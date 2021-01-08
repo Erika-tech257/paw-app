@@ -7,7 +7,10 @@ import Checkbox from '@material-ui/core/Checkbox';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
-import { type } from 'os';
+
+interface AcceptProps {
+  updateToken: (token: string) => void;
+}
 
 // can also use interface/glossary
 type SignState = {
@@ -15,64 +18,102 @@ type SignState = {
   password: string;
   username: string;
   login: boolean;
-  
-}
 
-class Sign extends React.Component<{},SignState>{
-  constructor(props:any) {
+}
+// Props passes first then State Example (<{}, SignState)
+
+class Sign extends React.Component<AcceptProps, SignState>{
+  constructor(props:AcceptProps) {
     super(props)
 
     this.state = {
       email: "",
       password: "",
       username: "",
-      login: true,
-      
+      login: true
+
     }
 
     this.handleSubmit = this.handleSubmit.bind(this)
     console.log('Was Clicked');
-    this.setState({email: ""})
-    this.setState({password: ""})
-    this.setState({username: ""})
-    this.setState({login:true})
-    
+    this.setState({ email: "" })
+    this.setState({ password: "" })
+    this.setState({ username: "" })
+    this.setState({ login: true })
+
+  }
+
+  loginToggle = () => {
+    this.setState({ login: true })
   }
 
 
+  // updates State
+  // switchNameHandler = () => {
+  //   console.log('Was Clicked');
+  //   this.setState({email: ""})
+  //   this.setState({password: ""})
+  //   this.setState({username: ""})
+  // }
+  // Effects are a components 'side effects'.  Effects are actions that occur when there is a state change. 
+  // componentDidMount() { **Component mounts when page is loaded, but this app want the fetch to call the api after clicking login or signup button
+  //   fetch('http://localhost:5000/user/signup')
+  // }
 
-// updates State
-// switchNameHandler = () => {
-//   console.log('Was Clicked');
-//   this.setState({email: ""})
-//   this.setState({password: ""})
-//   this.setState({username: ""})
-// }
+  // place api calls on componentDidMount or on an event, event handling logic
+    handleSubmit(e: any) {
+    e.preventDefault();
 
-// componentDidMount() { **Component mounts when page is loaded, but this app want the fetch to call the api after clicking login or signup button
-//   fetch('http://localhost:5000/user/signup')
-// }
+    
 
-// place api calls on componentDidMount or on an event, event handling logic
-handleSubmit(e:any){
-  e.preventDefault();
+    // const url = http://localhost:5000/user/${login ? 'login' : 'signup'}`
+    const url = ('http://localhost:5000/user/login')
+    let reqBody={
+        user:{
+          username: this.state.username, 
+          password: this.state.password, 
+          email: this.state.email
+        }
+    }
+    fetch(url, {
+      method: 'POST',
+      headers:{
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(reqBody)
+    })
+      .then(r => r.json())
+      .then(rObj => this.props.updateToken(rObj.sessionToken));
+  }
+  // SignupForm = () => {
+  //   if (this.state.login) {
+  //     return null
+  //   } else {
+  //     return (
+  //       <div>
+  //         <TextField
+  //           variant="outlined"
+  //           margin="normal"
+  //           required
+  //           fullWidth
+  //           name="username"
+  //           label="Username"
+  //           type="username"
+  //           id="username"
+  //           autoComplete="username"
+  //           value={this.state.username}
+  //           onChange={(e) => {
+  //             this.setState({
+  //               username: e.target.value
+  //             })
+  //             console.log(this.state.username)
+  //           }}
+  //         />
+  //       </div>
+  //     )
+  //   }
+  // }
 
-
-  // let userData = {user: {
-  //   email: userEmail, password:userPass, username:userName}}
-
-  fetch('http://loclahost:5000/user/signup',{
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({})
-})
-.then(r => r.json())
-// ****Figure out props.updateToken*********************************************
-// .then(rObj => props.updateToken(rObj.sessionToken, 
-//   rObj.user.id)); 
-}
   render() {
     return (
 
@@ -89,9 +130,9 @@ handleSubmit(e:any){
           name="email"
           autoComplete="email"
           value={this.state.email}
-          onChange = {(e) => {
+          onChange={(e) => {
             this.setState({
-              email:e.target.value
+              email: e.target.value
             })
             console.log(this.state.email);
           }}
@@ -108,38 +149,23 @@ handleSubmit(e:any){
           id="password"
           autoComplete="current-password"
           value={this.state.password}
-          onChange = {(e) => {
+          onChange={(e) => {
             this.setState({
-              password:e.target.value
+              password: e.target.value
             })
             console.log(this.state.password)
           }}
         />
-        <TextField
-          variant="outlined"
-          margin="normal"
-          required
-          fullWidth
-          name="username"
-          label="Username"
-          type="username"
-          id="username"
-          autoComplete="username"
-          value={this.state.username}
-          onChange = {(e) => {
-            this.setState({
-              username:e.target.value
-            })
-            console.log(this.state.username)
-          }}
-        />
+        
+       
+        <br />
         <FormControlLabel
           control={<Checkbox value="remember" color="primary" />}
           label="Remember me"
         />
-        <Button 
+        <Button
           type="submit"
-          onClick = {this.handleSubmit}
+          onClick={this.handleSubmit}
           fullWidth
           variant="contained"
           color="primary"
@@ -154,16 +180,18 @@ handleSubmit(e:any){
               </Link>
           </Grid>
           <Grid item>
-            <Link href="#" variant="body2">
-              {/* Put toggle button on link to switch to sign up and use ternary */}
-              {"Don't have an account? Sign Up"}
+            <Link href="#" variant="body2" onClick=
+              {this.loginToggle}>
+              {/* Put toggle button on link to switch to sign up and use ternary  */}
+              {this.state.login ? "Don't have an account? Sign Up" : ""}
             </Link>
           </Grid>
         </Grid>
       </Container>
     );
 
-    }
   }
-  
+}
+
+
 export default Sign;

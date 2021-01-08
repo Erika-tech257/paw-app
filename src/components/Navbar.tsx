@@ -2,7 +2,7 @@ import { Component } from 'react'
 import Link from '@material-ui/core/Link';
 // import Typography from '@material-ui/core/Typography';
 
-interface NavbarProps  {
+type NavbarComp = {
     Home: string;
     About: string;
     Posts: string;
@@ -10,7 +10,7 @@ interface NavbarProps  {
 }
 const preventDefault = (event: React.SyntheticEvent) => event.preventDefault();
 
- class Navbar extends Component<NavbarProps> {
+ class Navbar extends Component<{},NavbarComp>{
    
     
 
