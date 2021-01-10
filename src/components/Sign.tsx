@@ -44,7 +44,7 @@ class Sign extends React.Component<AcceptProps, SignState>{
   }
 
   loginToggle = () => {
-    this.setState({ login: true })
+    this.setState({ login:false })
   }
 
 
@@ -64,10 +64,14 @@ class Sign extends React.Component<AcceptProps, SignState>{
     handleSubmit(e: any) {
     e.preventDefault();
 
-    
+    let login = "string"
 
-    // const url = http://localhost:5000/user/${login ? 'login' : 'signup'}`
-    const url = ('http://localhost:5000/user/login')
+    // Sing up not working 500 error internal server, but login works
+    let serverLink = 'http://localhost:5000'
+
+    const url = `${serverLink}/user/${this.state.login ? 'login': 'signup'}`
+    
+    // const url = ('http://localhost:5000/user/login')
     let reqBody={
         user:{
           username: this.state.username, 
@@ -85,41 +89,40 @@ class Sign extends React.Component<AcceptProps, SignState>{
       .then(r => r.json())
       .then(rObj => this.props.updateToken(rObj.sessionToken));
   }
-  // SignupForm = () => {
-  //   if (this.state.login) {
-  //     return null
-  //   } else {
-  //     return (
-  //       <div>
-  //         <TextField
-  //           variant="outlined"
-  //           margin="normal"
-  //           required
-  //           fullWidth
-  //           name="username"
-  //           label="Username"
-  //           type="username"
-  //           id="username"
-  //           autoComplete="username"
-  //           value={this.state.username}
-  //           onChange={(e) => {
-  //             this.setState({
-  //               username: e.target.value
-  //             })
-  //             console.log(this.state.username)
-  //           }}
-  //         />
-  //       </div>
-  //     )
-  //   }
-  // }
+  SignupForm = () => {
+    if (this.state.login) {
+      return null
+    } else {
+      return (
+        <div>
+          <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            name="username"
+            label="Username"
+            type="username"
+            id="username"
+            autoComplete="username"
+            value={this.state.username}
+            onChange={(e) => {
+              this.setState({
+                username: e.target.value
+              })
+              console.log(this.state.username)
+            }}
+          />
+        </div>
+      )
+    }
+  }
 
   render() {
     return (
 
       <Container component="main" maxWidth="xs">
         <h1>Home Bound Paws</h1>
-
         <TextField
           variant="outlined"
           margin="normal"
@@ -156,7 +159,7 @@ class Sign extends React.Component<AcceptProps, SignState>{
             console.log(this.state.password)
           }}
         />
-        
+        {this.SignupForm()}
        
         <br />
         <FormControlLabel
@@ -171,7 +174,7 @@ class Sign extends React.Component<AcceptProps, SignState>{
           color="primary"
           className="{classes.submit}"
         >
-          Sign In
+          {this.state.login ? "Sign In" : "Sign Up"}
           </Button>
         <Grid container>
           <Grid item xs>
@@ -182,8 +185,7 @@ class Sign extends React.Component<AcceptProps, SignState>{
           <Grid item>
             <Link href="#" variant="body2" onClick=
               {this.loginToggle}>
-              {/* Put toggle button on link to switch to sign up and use ternary  */}
-              {this.state.login ? "Don't have an account? Sign Up" : ""}
+              {this.state.login ? "Don't have an account? Sign Up" : "Already have an account? Login"}
             </Link>
           </Grid>
         </Grid>
