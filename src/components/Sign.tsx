@@ -64,7 +64,7 @@ class Sign extends React.Component<AcceptProps, SignState>{
     handleSubmit(e: any) {
     e.preventDefault();
 
-    let login = "string"
+    // let login = "string"
 
     // Sing up not working 500 error internal server, but login works
     let serverLink = 'http://localhost:5000'

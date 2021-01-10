@@ -16,8 +16,19 @@ type NavbarComp = {
 const preventDefault = (event: React.SyntheticEvent) => event.preventDefault();
 
  class Navbar extends Component<NavProps,NavbarComp>{
- 
+   constructor(props:NavProps){
+     super(props)
+
+     this.state = {
+      Home: "",
+      About: "",
+      Posts: "",
+      Contact: ""
+
+    }
     
+   }
+ 
 
 
     render() {
@@ -38,7 +49,7 @@ const preventDefault = (event: React.SyntheticEvent) => event.preventDefault();
         {/* {'variant="body2"'} */}
         Contact
       </Link>
-      <Logout  />
+      <Logout clearToken = {this.props.clearToken} />
      
           </nav>
         )

@@ -2,46 +2,49 @@ import React, { Component } from 'react'
 import Button from '@material-ui/core/Button';
 
 
-// interface OutProps {
-//     clearToken: () => void
-//   }
+interface OutProps {
+    clearToken: () => void
+  }
 
   type OutState = {
     logout: boolean;
     
 }
 
-class Logout extends Component<{},OutState> {
+class Logout extends Component<OutProps,OutState> {
     constructor(props:any){
         super(props)
     
         this.state = {
-            logout: true
-           
+            logout: true    
         }
+        // this.handleSubmit = this.handleSubmit.bind(this)
+        // console.log('logout clicked')
+        // this.setState({logout:true})
+        
+      }
+          logout = (e:any) => {
+          console.log('logout clicked')
+          e.preventDefault(); 
+          this.setState({logout:true})
+          this.props.clearToken()
+      }
 
-        //     handleSubmit(e:any) {
-        //     e.preventDefault();
-        //     this.props.clearToken()
 
-        // }
-   
-}
     render() {
         return (
             <div className="mainDiv">
-             <Button
+          <Button
           type="submit"
-        //   onClick={this.handleSubmit}
-          
+          onClick={this.logout}
           variant="contained"
           color="primary"
           className="{classes.submit}"
         >
           {this.state.logout}  Logout
           </Button>
-
             </div>
+           
         )
     }
 }
