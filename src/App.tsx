@@ -11,7 +11,6 @@ interface AppProps {
 }
 
 interface AppState {
-
   
 }
 class App extends React.Component<AppProps, AppState>{
@@ -46,7 +45,7 @@ class App extends React.Component<AppProps, AppState>{
       localStorage.setItem('token', newToken);
       // localStorage.setItem(('userID', userID));
       }
-
+      SessionToken: any
       // We are resetting the state of our sessionToken to an empty string, and then we are also clearing our token from our local storage. This will determine if a user is logged in, based on whether or not sessionToken exists in their local storage.
       clearToken = () => {
       localStorage.clear()
@@ -54,14 +53,16 @@ class App extends React.Component<AppProps, AppState>{
       this.setState({CurrentUser:undefined})
       
     }
+
+   
   
   render() {
     return (
       <div className = "App">
-     <Sign updateToken={this.updateToken} /> 
+     {!this.SessionToken ? <Sign updateToken={this.updateToken} /> : <div>
      <Navbar clearToken = {this.clearToken}  />
      
-    
+        </div>}
       </div>
 
 
