@@ -1,8 +1,9 @@
 import React from 'react';
 import './App.css';
-import Navbar from './components/Navbar';
-import Sign from './components/Sign'
-
+import Navbar from './components/Auth/Navbar';
+import Sign from './components/Auth/Sign'
+// import UserPost from './components/PawPost/UserPost';
+import PostIndex from './components/PawPost/PostIndex'
 
 // App is top level component
 
@@ -10,8 +11,10 @@ interface AppProps {
 
 }
 
-interface AppState {
-  
+type AppState = {
+  SessionToken:any
+  CurrentUser: any
+
 }
 class App extends React.Component<AppProps, AppState>{
 
@@ -19,8 +22,8 @@ class App extends React.Component<AppProps, AppState>{
     super(props);
 
     this.state = {
-      SessionToken: null,
-      CurrentUser : null
+      SessionToken: undefined,
+      CurrentUser : undefined
     }
   }
  
@@ -43,30 +46,41 @@ class App extends React.Component<AppProps, AppState>{
       updateToken = (newToken:string) => {
       this.setState({SessionToken:newToken}); 
       localStorage.setItem('token', newToken);
-      // localStorage.setItem(('userID', userID));
+      console.log(newToken);
+     
       }
-      SessionToken: any
+
+      updateUser = (userID:string) =>  {
+        this.setState({CurrentUser:userID})
+        localStorage.setItem('userID', userID);
+        console.log(userID);
+
+      }
+   
       // We are resetting the state of our sessionToken to an empty string, and then we are also clearing our token from our local storage. This will determine if a user is logged in, based on whether or not sessionToken exists in their local storage.
       clearToken = () => {
-      localStorage.clear()
       this.setState({SessionToken:undefined})
       this.setState({CurrentUser:undefined})
+      localStorage.clear()
       
     }
 
-   
-  
+//      UserViews = () => {
+//     return (this.state.SessionToken === localStorage.getItem('token') ? <UserPost token = {this.SessionToken} /> :
+//     < Sign updateToken={this.updateToken} />)
+// }
   render() {
     return (
-      <div className = "App">
-     {!this.SessionToken ? <Sign updateToken={this.updateToken} /> : <div>
+      <div className = "App" >
+       
+     {!this.state.SessionToken ? <Sign updateToken={this.updateToken} /> : <div>
      <Navbar clearToken = {this.clearToken}  />
-     
-        </div>}
-      </div>
-
-
+    <PostIndex updateUser ={this.updateUser} />
+      </div>}
+</div>
+    
     )
+    
   }
 }
 export default App;

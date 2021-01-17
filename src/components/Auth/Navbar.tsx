@@ -2,7 +2,7 @@ import { Component } from 'react'
 import Link from '@material-ui/core/Link';
 // import Typography from '@material-ui/core/Typography';
 import Logout from './Logout'
-
+import './NavBar.css'
 interface NavProps {
   clearToken: () => void
 }
@@ -13,7 +13,7 @@ type NavbarComp = {
   Posts: string;
   Contact: string;
 }
-const preventDefault = (event: React.SyntheticEvent) => event.preventDefault();
+// const preventDefault = (event: React.SyntheticEvent) => event.preventDefault();
 
 class Navbar extends Component<NavProps, NavbarComp>{
   constructor(props: NavProps) {
@@ -34,22 +34,8 @@ class Navbar extends Component<NavProps, NavbarComp>{
   render() {
     return (
       <div className="mainNav">
+        <h1>Home Bound Paws</h1>
         <nav>
-          <Link href="#" onClick={preventDefault}>
-            Home
-          </Link>
-          <Link href="#" onClick={preventDefault} variant="body2" >
-            {/* {'color="inherit"'} */}
-            About
-          </Link>
-          <Link href="#" onClick={preventDefault} variant="body2">
-            {/* {'variant="body2"'} */}
-            Posts
-          </Link>
-          <Link href="#" onClick={preventDefault} variant="body2">
-            {/* {'variant="body2"'} */}
-            Contact
-          </Link>
           <Logout clearToken={this.props.clearToken} />
 
         </nav>

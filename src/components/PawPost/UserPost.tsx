@@ -6,8 +6,11 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 
 interface PostProps{
+updateUser: (userID: string) => any
 
 }
+
+// use sessiontoken to access local storage
 
 type PostState = {
     title: string;
@@ -18,10 +21,11 @@ type PostState = {
     description: string;
     date: string;
     time: string;
+    id: string;
 }
 
 
- class AppPost extends Component<PostProps, PostState> {
+ class UserPost extends Component<PostProps, PostState> {
      constructor(props:PostProps){
          super(props)
 
@@ -33,10 +37,41 @@ type PostState = {
              state: "",
              description: "",
              date: "",
-             time: ""
+             time: "",
+             id:""
 
          }
+
+         let serverLink = 'http://localhost:5000'
         
+         const url = `${serverLink}/pawpost/log`
+
+         let body = {
+           pawpost: {
+             title: this.state.title,
+             animal: this.state.animal,
+             color: this.state.color,
+             city: this.state.city,
+             state: this.state.state,
+             description: this.state.description,
+             date: this.state.date,
+             time: this.state.time,
+
+           }
+         }
+
+         fetch(url, {
+           method: 'POST',
+           headers: {
+             'Content-Type': 'application/json',
+             
+           },
+           body: JSON.stringify(body)
+         })
+         .then(r => r.json())
+         .then(rObj => {
+          //finish code here
+         });   
      }
     render() {
         return (
@@ -65,4 +100,4 @@ type PostState = {
     }
 }
 
-export default AppPost;
+export default UserPost;

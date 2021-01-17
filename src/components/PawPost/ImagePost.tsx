@@ -7,6 +7,7 @@ interface ImgProps {
 type ImgState = {
     avUrl: string,
     
+    
 }
 
 const CLOUD_URL = "https://api.cloudinary.com/v1_1/dc7cdwbh0/image/upload"
@@ -17,6 +18,7 @@ class ImagePost extends Component<ImgProps, ImgState> {
 
         this.state = {
             avUrl: "",
+           
             
         }
         
@@ -38,14 +40,14 @@ class ImagePost extends Component<ImgProps, ImgState> {
             const { sig, ts } = await response.json()
 
             console.log(ts);
-
-            const file = HTMLElement.itemId('file-input').files[0]
             
-
+            
+            // const file = HTMLElement.itemId('file-input').files[0]
             // const file = document.getElementById('file-input').files[0]
+            // const file = document.querySelectorAll<HTMLElement>('file-input').files[0]
             const formData = new FormData()
         
-            formData.append('file', file)
+            // formData.append('file', file)
             formData.append('upload_preset', 'uuhz0rq7')
             formData.append('api_key', '513851381862193')
             formData.append('signature', sig)

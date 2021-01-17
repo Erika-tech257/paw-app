@@ -43,8 +43,8 @@ class Sign extends React.Component<AcceptProps, SignState>{
 
   }
 
-  loginToggle = () => {
-    this.setState({ login:false })
+  loginToggle= () => {
+    this.setState({ login: !this.state.login })
   }
 
 
@@ -87,7 +87,7 @@ class Sign extends React.Component<AcceptProps, SignState>{
       body: JSON.stringify(reqBody)
     })
       .then(r => r.json())
-      .then(rObj => this.props.updateToken(rObj.sessionToken));
+      .then(rObj => this.props.updateToken(rObj.sessiontoken));
   }
   SignupForm = () => {
     if (this.state.login) {
@@ -186,8 +186,6 @@ class Sign extends React.Component<AcceptProps, SignState>{
             <Link href="#" variant="body2" onClick=
               {this.loginToggle}>
               {this.state.login ? "Don't have an account? Sign Up" : "Already have an account? Login"} 
-            
-
               
             </Link>
           </Grid>
