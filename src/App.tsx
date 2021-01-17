@@ -55,6 +55,8 @@ class App extends React.Component<AppProps, AppState>{
         localStorage.setItem('userID', userID);
         console.log(userID);
 
+        // UserID logs undefined in the console must be attached to token to register user id ?
+
       }
    
       // We are resetting the state of our sessionToken to an empty string, and then we are also clearing our token from our local storage. This will determine if a user is logged in, based on whether or not sessionToken exists in their local storage.
