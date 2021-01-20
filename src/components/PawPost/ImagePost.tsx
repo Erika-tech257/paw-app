@@ -22,15 +22,15 @@ class ImagePost extends Component<ImgProps, ImgState> {
             
         }
         
-        this.setState({ avUrl: ("https://res.cloudinary.com/dc7cdwbh0/image/upload/v1605829363/BallrApp/yysv5rrbggtxxkdoa558.png") })
+        this.setState({ avUrl: ("") })
     
     }
             handleSubmit = async (e: any) => {
             e.preventDefault()
 
-            let serverLink = 'http://localhost:5000'
+            // let serverLink = 'http://localhost:5000'
 
-            const response = await fetch(`${serverLink}/user/cloudsign`, {
+            const response = await fetch('http://localhost:5000/user/cloudsign', {
                 method: 'GET',
                 headers: {
                     'Authorization': this.props.SessionToken
@@ -62,7 +62,7 @@ class ImagePost extends Component<ImgProps, ImgState> {
         
             this.setState({avUrl:(results.secure_url)})
         
-            const final = await (await fetch(`${serverLink}/user/imageset`, {
+            const final = await (await fetch('http://localhost:5000/user/imageset', {
                 method: 'PUT',
                 headers:{
                 'Authorization': this.props.SessionToken,
@@ -83,7 +83,7 @@ class ImagePost extends Component<ImgProps, ImgState> {
                     <input id="file-input" type="file" />
                     <button className='loadButton' >Upload!</button>
                 </form>
-                <img src={this.state.avUrl} alt="avatar" />
+                <img src={this.state.avUrl} alt="PetImage" />
 
             </div>
         )

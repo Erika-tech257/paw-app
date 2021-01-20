@@ -34,7 +34,8 @@ class Navbar extends Component<NavProps, NavbarComp>{
   render() {
     return (
       <div className="mainNav">
-        <h1>Home Bound Paws</h1>
+        <h1 className= "MainName">
+          Home Bound Paws</h1>
         <nav>
           <Logout clearToken={this.props.clearToken} />
 

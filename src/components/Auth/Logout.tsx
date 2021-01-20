@@ -38,7 +38,7 @@ class Logout extends Component<OutProps,OutState> {
           type="submit"
           onClick={this.logout}
           variant="contained"
-          color="primary"
+          color="secondary"
           className="{classes.submit}"
         >
           {this.state.logout}  Logout

@@ -2,19 +2,19 @@ import React, { Component } from 'react'
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
+
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import ImagePost from './ImagePost'
 
-interface PostProps{
-updateUser: (userID: string) => any
+interface PostEditProps{
+    updateUser: (userID: string) => any
+    fetchHomePosts : any
+    }
 
-}
-
-// use sessiontoken to access local storage
-
-type PostState = {
+    
+type PostEditState = {
     title: string;
     animal: string;
     color: string;
@@ -25,95 +25,82 @@ type PostState = {
     time: string;
     newBlog: string;
     togUser: boolean;
+    id: string;
 }
 
 
- class UserPost extends Component<PostProps, PostState> {
-     constructor(props:PostProps){
-         super(props)
+// Displays user posts and has an edit and delete button
+ class PostEdit extends Component<PostEditProps,PostEditState> {
+     constructor(props:PostEditProps){
+        super(props)
 
-         this.state = {
-             title: "",
-             animal: "",
-             color: "",
-             city: "",
-             state: "",
-             description: "",
-             date: "",
-             time: "",
-             newBlog:"",
-             togUser: true
-
-         }
-
-     
-         this.handleSubmit = this.handleSubmit.bind(this)
-         console.log("User info inputed");
-         this.setState({ title: ""})
-         this.setState({ animal: ""})
-         this.setState({ color: ""})
-         this.setState({ city: ""})
-         this.setState({ state: ""})
-         this.setState({ description: ""})
-         this.setState({ date: ""})
-         this.setState({ time: ""})
-         this.setState({ newBlog: ""})
-         this.setState({togUser: true})
+        this.state = {
+            title: "",
+            animal: "",
+            color: "",
+            city: "",
+            state: "",
+            description: "",
+            date: "",
+            time: "",
+            newBlog: "",
+            togUser: true,
+            id: ""
         }
 
-        // Toggle between user edit for post
+        this.setState({ title: ""})
+        this.setState({ animal: ""})
+        this.setState({ color: ""})
+        this.setState({ city: ""})
+        this.setState({ state: ""})
+        this.setState({ description: ""})
+        this.setState({ date: ""})
+        this.setState({ time: ""})
+        this.setState({ id: "" })
 
-        togUserToggle = () => {
-          this.setState({togUser: !this.state.togUser})
-        }
+      }
 
-         handleSubmit (e: any) {
-          e.preventDefault();
+        handleSubmit (e: any) {
+            e.preventDefault();
+            
+            const url = `http://localhost:5000/pawpost/my/${this.state.id}`
+
+            let editbody = {
+              pawpost: {
+              title: this.state.title,
+              animal: this.state.animal,
+              color: this.state.color,
+              city: this.state.city,
+              state: this.state.state,
+              description: this.state.description,
+              date: this.state.date,
+              time: this.state.time,
+              newBlog: this.props.updateUser
+            }
+          }
           
-
-         let serverLink = 'http://localhost:5000'
+          fetch(url, {
+            method: 'PUT',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(editbody)
+          })
+          .then(r => r.json())
+          .then(rObj => {
+            console.log(rObj)
+          }) 
+        }
         
-         const url = `${serverLink}/pawpost/log`
-
-         let body = {
-           pawpost: {
-             title: this.state.title,
-             animal: this.state.animal,
-             color: this.state.color,
-             city: this.state.city,
-             state: this.state.state,
-             description: this.state.description,
-             date: this.state.date,
-             time: this.state.time,
-             newBlog : this.props.updateUser
-
-           }
-         }
-
-       
-         fetch(url, {
-           method: 'POST',
-           headers: {
-             'Content-Type': 'application/json',
-             
-           },
-           body: JSON.stringify(body)
-         })
-         .then(r => r.json())
-         .then(rObj => this.props.updateUser(rObj.userID) 
-          );   
-     }
      
     render() {
         return (
-            <div className = "pawpost">
+            <div className ="PostEdit">
+               
                 <Card className={''}>
+                
       <CardActionArea>
-        <CardMedia
-          className={''}
-          image="/static/images/cards/contemplative-reptile.jpg"
-          title="Contemplative Reptile"
-        />
+      {/* <ImagePost SessionToken /> */}
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
             Create a PawPost
@@ -272,6 +259,19 @@ type PostState = {
           }}
           autoFocus
         />
+         <Button
+          type="button"
+          // onClick={this.postForm}
+          fullWidth
+          variant="contained"
+          color="primary"
+          className="EditBtn"
+        >
+         Edit 
+        </Button>
+
+          <br />
+          <br/>
 
           <Button
           type="submit"
@@ -279,9 +279,9 @@ type PostState = {
           fullWidth
           variant="contained"
           color="primary"
-          className="{classes.submit}"
+          className="submitPostBtn"
         >
-         Submit
+         Update
         </Button>
 
           </Typography>
@@ -289,10 +289,10 @@ type PostState = {
         </CardContent>
       </CardActionArea>
     </Card>
-                
+               
             </div>
         )
     }
 }
 
-export default UserPost;
+export default PostEdit

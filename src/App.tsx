@@ -2,7 +2,6 @@ import React from 'react';
 import './App.css';
 import Navbar from './components/Auth/Navbar';
 import Sign from './components/Auth/Sign'
-// import UserPost from './components/PawPost/UserPost';
 import PostIndex from './components/PawPost/PostIndex'
 
 // App is top level component
@@ -77,7 +76,7 @@ class App extends React.Component<AppProps, AppState>{
        
      {!this.state.SessionToken ? <Sign updateToken={this.updateToken} /> : <div>
      <Navbar clearToken = {this.clearToken}  />
-    <PostIndex updateUser ={this.updateUser} />
+    <PostIndex updateUser ={this.updateUser} sessionToken={this.state.SessionToken}  />
       </div>}
 </div>
     
