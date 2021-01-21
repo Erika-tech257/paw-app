@@ -1,6 +1,6 @@
 import React from 'react'
 import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
+import Container from '@material-ui/core/Container';
 import CardContent from '@material-ui/core/CardContent';
 
 import Typography from '@material-ui/core/Typography';
@@ -13,6 +13,7 @@ interface PostProps{
 updateUser: (userID: string) => any
 fetchHomePosts : any
 sessionToken: any
+
 }
 
 
@@ -27,8 +28,8 @@ type PostState = {
     description: string;
     date: string;
     time: string;
-    newBlog: string;
-    subTog: boolean;
+    owner: string;
+    
 }
 
 
@@ -45,8 +46,8 @@ type PostState = {
              description: "",
              date: "",
              time: "",
-             newBlog: "",
-             subTog: true
+             owner: ""
+             
 
          }
 
@@ -87,7 +88,7 @@ type PostState = {
              description: this.state.description,
              date: this.state.date,
              time: this.state.time,
-             newBlog: this.props.updateUser
+             owner: this.props.updateUser
            }
          }
 
@@ -104,16 +105,23 @@ type PostState = {
            console.log(rObj); 
            this.props.fetchHomePosts();
          });   
+
+        //  Toggle to Edit post
+        // const editPostUpdate = (homePosts) =>{
+        //   setHomePostsUpdate(homePosts)
+        //   console.log(homePosts);
+        // }
      }
      
     render() {
         return (
-            <div className = "pawpost">
-                <Card className={''}>
+         
+            <div>
+                <Card className={'mainCard'}>
       <ImagePost SessionToken />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
-            Create a PawPost
+            Create PawPost
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
            {/* Text input field goes here */}
@@ -297,10 +305,11 @@ type PostState = {
           </Typography>
       
         </CardContent>
-        {/* <PostEdit updateUser = {this.props.updateUser} fetchHomePosts/> */}
+      
     </Card>
   
             </div>
+            
         )
     }
 }

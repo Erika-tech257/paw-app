@@ -13,7 +13,7 @@ interface AcceptProps {
 }
 
 // can also use interface/glossary
-type SignState = {
+interface SignState {
   email: string;
   password: string;
   username: string;

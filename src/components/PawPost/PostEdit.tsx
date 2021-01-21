@@ -11,87 +11,114 @@ import ImagePost from './ImagePost'
 interface PostEditProps{
     updateUser: (userID: string) => any
     fetchHomePosts : any
+    sessionToken: any
+    homePostsUpdate: any
     }
 
     
-type PostEditState = {
-    title: string;
-    animal: string;
-    color: string;
-    city: string;
-    state: string;
-    description: string;
-    date: string;
-    time: string;
-    newBlog: string;
-    togUser: boolean;
-    id: string;
+interface PostEditState {
+    edtitle: string;
+    edanimal: string;
+    edcolor: string;
+    edcity: string;
+    edstate: string;
+    eddescription: string;
+    eddate: string;
+    edtime: string;
+    
 }
 
 
 // Displays user posts and has an edit and delete button
  class PostEdit extends Component<PostEditProps,PostEditState> {
+
+  state: PostEditState;
+
      constructor(props:PostEditProps){
         super(props)
-
+        
         this.state = {
-            title: "",
-            animal: "",
-            color: "",
-            city: "",
-            state: "",
-            description: "",
-            date: "",
-            time: "",
-            newBlog: "",
-            togUser: true,
-            id: ""
+            edtitle: "",
+            edanimal: "",
+            edcolor: "",
+            edcity: "",
+            edstate: "",
+            eddescription: "",
+            eddate: "",
+            edtime: ""
+         
+          
         }
-
-        this.setState({ title: ""})
-        this.setState({ animal: ""})
-        this.setState({ color: ""})
-        this.setState({ city: ""})
-        this.setState({ state: ""})
-        this.setState({ description: ""})
-        this.setState({ date: ""})
-        this.setState({ time: ""})
-        this.setState({ id: "" })
-
+      //  Passing props to update/edit info in post usre created. passing homePosts from postindex compoenet
+       
+        this.handleSubmit=this.handleSubmit.bind(this)
+        console.log('Post Updated');
+        this.setState({ edtitle: this.props.homePostsUpdate.title})
+        this.setState({ edanimal: this.props.homePostsUpdate.animal})
+        this.setState({ edcolor: this.props.homePostsUpdate.color})
+        this.setState({ edcity: this.props.homePostsUpdate.city})
+        this.setState({ edstate: this.props.homePostsUpdate.state})
+        this.setState({ eddescription: this.props.homePostsUpdate.description})
+        this.setState({ eddate: this.props.homePostsUpdate.date})
+        this.setState({ edtime: this.props.homePostsUpdate.time})
+        
       }
+
+
+       // updates State
+      //  switchPostHandler = () => {
+      //   this.setState({ title: ""})
+      //   this.setState({ animal: ""})
+      //   this.setState({ color: ""})
+      //   this.setState({ city: ""})
+      //   this.setState({ state: ""})
+      //   this.setState({ description: ""})
+      //   this.setState({ date: ""})
+      //   this.setState({ time: ""})
+      //  }
+       
 
         handleSubmit (e: any) {
             e.preventDefault();
+
             
-            const url = `http://localhost:5000/pawpost/my/${this.state.id}`
+            
+            const editurl = 'http://localhost:5000/pawpost/{id}'
+
+          
 
             let editbody = {
               pawpost: {
-              title: this.state.title,
-              animal: this.state.animal,
-              color: this.state.color,
-              city: this.state.city,
-              state: this.state.state,
-              description: this.state.description,
-              date: this.state.date,
-              time: this.state.time,
-              newBlog: this.props.updateUser
+              title: this.state.edtitle,
+              animal: this.state.edanimal,
+              color: this.state.edcolor,
+              city: this.state.edcity,
+              state: this.state.edstate,
+              description: this.state.eddescription,
+              date: this.state.eddate,
+              time: this.state.edtime,
+              owner: this.props.updateUser
             }
           }
           
-          fetch(url, {
+          fetch(editurl, {
             method: 'PUT',
             headers: {
               'Content-Type': 'application/json',
+              'Authorization': this.props.sessionToken,
             },
             body: JSON.stringify(editbody)
           })
           .then(r => r.json())
           .then(rObj => {
             console.log(rObj)
+            this.props.fetchHomePosts();
           }) 
         }
         
+        // componentDidUpdate = () => {
+        //   this.props.fetchHomePosts()
+        // }
      
     render() {
         return (
@@ -103,7 +130,7 @@ type PostEditState = {
       {/* <ImagePost SessionToken /> */}
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
-            Create a PawPost
+            Edit PawPost
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
            {/* Text input field goes here */}
@@ -117,12 +144,12 @@ type PostEditState = {
           label="Title"
           name="title"
           autoComplete="title"
-          value={this.state.title}
+          value={this.state.edtitle}
           onChange={(e) => {
             this.setState({
-              title: e.target.value
+              edtitle: e.target.value
             })
-            console.log(this.state.title);
+            console.log(this.state.edtitle);
           }}
           autoFocus
         />
@@ -136,12 +163,12 @@ type PostEditState = {
           label="Animal"
           name="animal"
           autoComplete="animal"
-          value={this.state.animal}
+          value={this.state.edanimal}
           onChange={(e) => {
             this.setState({
-              animal: e.target.value
+              edanimal: e.target.value
             })
-            console.log(this.state.animal);
+            console.log(this.state.edanimal);
           }}
           autoFocus
         />
@@ -155,12 +182,12 @@ type PostEditState = {
           label="Color"
           name="color"
           autoComplete="color"
-          value={this.state.color}
+          value={this.state.edcolor}
           onChange={(e) => {
             this.setState({
-              color: e.target.value
+              edcolor: e.target.value
             })
-            console.log(this.state.color);
+            console.log(this.state.edcolor);
           }}
           autoFocus
         />
@@ -174,12 +201,12 @@ type PostEditState = {
           label="City"
           name="city"
           autoComplete="city"
-          value={this.state.city}
+          value={this.state.edcity}
           onChange={(e) => {
             this.setState({
-              city: e.target.value
+              edcity: e.target.value
             })
-            console.log(this.state.city);
+            console.log(this.state.edcity);
           }}
           autoFocus
         />
@@ -193,12 +220,12 @@ type PostEditState = {
           label="State"
           name="state"
           autoComplete="state"
-          value={this.state.state}
+          value={this.state.edstate}
           onChange={(e) => {
             this.setState({
-              state: e.target.value
+              edstate: e.target.value
             })
-            console.log(this.state.state);
+            console.log(this.state.edstate);
           }}
           autoFocus
         />
@@ -212,12 +239,12 @@ type PostEditState = {
           label="Description"
           name="description"
           autoComplete="description"
-          value={this.state.description}
+          value={this.state.eddescription}
           onChange={(e) => {
             this.setState({
-              description: e.target.value
+              eddescription: e.target.value
             })
-            console.log(this.state.description);
+            console.log(this.state.eddescription);
           }}
           autoFocus
         />    
@@ -231,12 +258,12 @@ type PostEditState = {
           label="Date"
           name="date"
           autoComplete="date"
-          value={this.state.date}
+          value={this.state.eddate}
           onChange={(e) => {
             this.setState({
-              date: e.target.value
+              eddate: e.target.value
             })
-            console.log(this.state.date);
+            console.log(this.state.eddate);
           }}
           autoFocus
         />    
@@ -250,24 +277,24 @@ type PostEditState = {
           label="Time"
           name="time"
           autoComplete="time"
-          value={this.state.time}
+          value={this.state.edtime}
           onChange={(e) => {
             this.setState({
-              time: e.target.value
+              edtime: e.target.value
             })
-            console.log(this.state.time);
+            console.log(this.state.edtime);
           }}
           autoFocus
         />
          <Button
           type="button"
-          // onClick={this.postForm}
+          // onClick={this.handleSubmit}
           fullWidth
           variant="contained"
           color="primary"
-          className="EditBtn"
+          className="deleteBtn"
         >
-         Edit 
+         Delete 
         </Button>
 
           <br />

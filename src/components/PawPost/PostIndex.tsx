@@ -1,19 +1,27 @@
 import React, { Component } from 'react'
 // import Typography from '@material-ui/core/Typography';
-import Container from '@material-ui/core/Container';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import Modal from '@material-ui/core/Modal';
 import Button from '@material-ui/core/Button';
+import Container from '@material-ui/core/Container';
+import Popper from '@material-ui/core/Popper';
 import PostCreate from './PostCreate';
-import PostEdit from './PostEdit';
+// import PostEdit from './PostEdit';
 
 
 interface IndexProps{
     updateUser: (userID: string) => any
     sessionToken: any
     
+    
     }
 
-type IState = {
-    homePosts: ([])
+interface IState {
+    homePosts: ([]),
+    Posts: boolean
+    open: boolean
+    
     
 }
 
@@ -25,15 +33,19 @@ type IState = {
         super(props)
 
         this.state ={
-            homePosts: ([])
+            homePosts: ([]),
+            Posts: false,
+            open: true
         }
 
         // this.setState({homePosts: [] })
+        // this.setState({ Posts: false})
+        this.setState({ open: true})
     }
 
-    // PostToggle = () => {
-    //     this.setState({ Post: !this.state.Post})
-    // }
+        PostToggle = () => {
+        this.setState({ Posts: !this.state.Posts})
+    }
 
         fetchHomePosts () {
         fetch('http://localhost:5000/pawpost/allLogs', { 
@@ -57,24 +69,52 @@ type IState = {
     componentDidMount = () => {
       this.fetchHomePosts()
   }
+  
+
+   handleOpen = () => {
+    this.setState({open:true});
+  }
+   handleClose = () => {
+    this.setState({open:false});
+  }
     render() {
         return (
             <div>
-        {/* <Button variant="outlined" color="primary">
-         Create PawPost
-        </Button> */}
-      <Container maxWidth="sm">
-        {/* <Typography component="div" style={{ backgroundColor: '#cfe8fc', height: '100vh' }} /> */}
+      
+         {/* <button className="togBtn" type="button" onClick={this.PostToggle}>
+            Create PawPost
+        </button> */}
+        <Button variant="outlined" color="primary" onClick={this.handleOpen}>
+        Create PawPost
+        </Button>
+        <Dialog
+        open={this.state.open}
+        onClose={this.handleClose}
+        aria-labelledby="responsive-dialog-title">
+    
+       <Container maxWidth ="sm">
         <PostCreate updateUser = {this.props.updateUser} fetchHomePosts={this.fetchHomePosts} sessionToken={this.props.sessionToken}/>
+        <br />
+        {/* <PostEdit updateUser = {this.props.updateUser} fetchHomePosts={this.fetchHomePosts} sessionToken={this.props.sessionToken}/> */}
+      
+        <DialogActions>
+          <Button onClick={this.handleClose} color="primary">
+            Close
+          </Button>
+        </DialogActions>
       </Container>
+     
+      </Dialog>
+      
       </div>
   );
 }
 
                 
-         
+     
  }
 
-export default PostIndex
+export default PostIndex;
+
 
 

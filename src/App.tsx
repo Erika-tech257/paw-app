@@ -13,6 +13,7 @@ interface AppProps {
 type AppState = {
   SessionToken:any
   CurrentUser: any
+  
 
 }
 class App extends React.Component<AppProps, AppState>{
@@ -76,7 +77,7 @@ class App extends React.Component<AppProps, AppState>{
        
      {!this.state.SessionToken ? <Sign updateToken={this.updateToken} /> : <div>
      <Navbar clearToken = {this.clearToken}  />
-    <PostIndex updateUser ={this.updateUser} sessionToken={this.state.SessionToken}  />
+    <PostIndex updateUser ={this.updateUser} sessionToken={this.state.SessionToken}   />
       </div>}
 </div>
     
