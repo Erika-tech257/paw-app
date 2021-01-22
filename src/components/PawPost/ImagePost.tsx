@@ -18,7 +18,7 @@ class ImagePost extends Component<ImgProps, ImgState> {
 
         this.state = {
             avUrl: "",
-           
+        //    copy secure url image from console goes into avUrl as default image
             
         }
         
@@ -41,13 +41,18 @@ class ImagePost extends Component<ImgProps, ImgState> {
 
             console.log(ts);
             
-            
+            const fileInput = document.getElementById('file-input')
+            let file
+            if(fileInput !== null){
+                file = (fileInput as HTMLInputElement)!.files[0]
+
+            }
             // const file = HTMLElement.itemId('file-input').files[0]
-            // const file = document.getElementById('file-input').files[0]
-            // const file = document.querySelectorAll<HTMLElement>('file-input').files[0]
+            // const file = (document.getElementById('file-input') as HTMLInputElement)!.files[0]
+            // const file = (document.getElementById('file-input'))!.files[0]
             const formData = new FormData()
         
-            // formData.append('file', file)
+            formData.append('file', file)
             formData.append('upload_preset', 'uuhz0rq7')
             formData.append('api_key', '513851381862193')
             formData.append('signature', sig)

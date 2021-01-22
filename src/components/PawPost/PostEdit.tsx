@@ -83,7 +83,7 @@ interface PostEditState {
 
             
             
-            const editurl = 'http://localhost:5000/pawpost/{id}'
+            const editurl = 'http://localhost:5000/pawpost/id'
 
           
 

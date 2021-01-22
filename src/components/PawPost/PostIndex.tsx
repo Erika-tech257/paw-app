@@ -7,32 +7,32 @@ import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
 import Popper from '@material-ui/core/Popper';
 import PostCreate from './PostCreate';
-// import PostEdit from './PostEdit';
+import PostCatalog from './PostCatalog';
 
 
-interface IndexProps{
+interface IndexProps {
     updateUser: (userID: string) => any
     sessionToken: any
-    
-    
-    }
+
+
+}
 
 interface IState {
     homePosts: ([]),
     Posts: boolean
     open: boolean
-    
-    
+
+
 }
 
 
 
 
- class PostIndex extends Component<IndexProps, IState> {
-    constructor(props:IndexProps){
+class PostIndex extends Component<IndexProps, IState> {
+    constructor(props: IndexProps) {
         super(props)
 
-        this.state ={
+        this.state = {
             homePosts: ([]),
             Posts: false,
             open: true
@@ -40,20 +40,20 @@ interface IState {
 
         // this.setState({homePosts: [] })
         // this.setState({ Posts: false})
-        this.setState({ open: true})
+        this.setState({ open: true })
     }
 
-        PostToggle = () => {
-        this.setState({ Posts: !this.state.Posts})
+    PostToggle = () => {
+        this.setState({ Posts: !this.state.Posts })
     }
 
-        fetchHomePosts () {
-        fetch('http://localhost:5000/pawpost/allLogs', { 
+    fetchHomePosts() {
+        fetch('http://localhost:5000/pawpost/allLogs', {
             method: 'GET',
-            headers:({
+            headers: ({
                 'Content-Type': 'application/json',
             })
-            }).then( (res) => res.json())
+        }).then((res) => res.json())
             .then((logdata) => {
                 this.setState({
                     homePosts: logdata
@@ -61,58 +61,52 @@ interface IState {
             }).catch(err => console.log(err))
         console.log(this.fetchHomePosts);
 
-      }
-      
+    }
+
 
     // Figure out componentdidmount code console should return an empty array or an array to show posts current user created
     // componentDidMount do not put inside fetch function but above render function
     componentDidMount = () => {
-      this.fetchHomePosts()
-  }
-  
+        this.fetchHomePosts()
+    }
 
-   handleOpen = () => {
-    this.setState({open:true});
-  }
-   handleClose = () => {
-    this.setState({open:false});
-  }
+
+    handleOpen = () => {
+        this.setState({ open: true });
+    }
+    handleClose = () => {
+        this.setState({ open: false });
+    }
     render() {
         return (
             <div>
-      
-         {/* <button className="togBtn" type="button" onClick={this.PostToggle}>
-            Create PawPost
-        </button> */}
-        <Button variant="outlined" color="primary" onClick={this.handleOpen}>
-        Create PawPost
-        </Button>
-        <Dialog
-        open={this.state.open}
-        onClose={this.handleClose}
-        aria-labelledby="responsive-dialog-title">
-    
-       <Container maxWidth ="sm">
-        <PostCreate updateUser = {this.props.updateUser} fetchHomePosts={this.fetchHomePosts} sessionToken={this.props.sessionToken}/>
-        <br />
-        {/* <PostEdit updateUser = {this.props.updateUser} fetchHomePosts={this.fetchHomePosts} sessionToken={this.props.sessionToken}/> */}
-      
-        <DialogActions>
-          <Button onClick={this.handleClose} color="primary">
-            Close
-          </Button>
-        </DialogActions>
-      </Container>
-     
-      </Dialog>
-      
-      </div>
-  );
-}
+                <Button variant="outlined" color="primary" onClick={this.handleOpen}>
+                    Create PawPost
+                </Button>
+                <Dialog
+                    open={this.state.open}
+                    onClose={this.handleClose}
+                    aria-labelledby="responsive-dialog-title">
+                    <Container maxWidth="sm">
+                        <PostCreate updateUser={this.props.updateUser} fetchHomePosts={this.fetchHomePosts} sessionToken={this.props.sessionToken} />
+                        <br />
+                        {/* <PostEdit updateUser = {this.props.updateUser} fetchHomePosts={this.fetchHomePosts} sessionToken={this.props.sessionToken}/> */}
 
-                
-     
- }
+                        <DialogActions>
+                            <Button onClick={this.handleClose} color="primary">
+                                Close
+                             </Button>
+                        </DialogActions>
+                    </Container>
+                </Dialog>
+                {/* <PostCatalog homePosts={this.state.homePosts} fetchHomePosts={this.fetchHomePosts} sessionToken={this.props.sessionToken} /> */}
+            </div>
+        );
+    }
+
+
+
+}
 
 export default PostIndex;
 
