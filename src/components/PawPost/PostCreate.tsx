@@ -2,7 +2,6 @@ import React from 'react'
 import Card from '@material-ui/core/Card';
 import Container from '@material-ui/core/Container';
 import CardContent from '@material-ui/core/CardContent';
-
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
@@ -13,6 +12,7 @@ interface PostProps{
 updateUser: (userID: string) => any
 fetchHomePosts : any
 sessionToken: any
+
 
 }
 
@@ -118,7 +118,7 @@ type PostState = {
          
             <div>
                 <Card className={'mainCard'}>
-      <ImagePost SessionToken />
+      <ImagePost sessionToken={this.props.sessionToken} />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
             Create PawPost
@@ -279,14 +279,15 @@ type PostState = {
         />
          <Button
           type="button"
-          // onClick={this.postForm}
+          // onClick={this.handleSubmit}
           fullWidth
           variant="contained"
           color="primary"
           className="editBtn"
         >
          Edit
-        </Button>
+        </Button> 
+       
 
           <br />
           <br/>
@@ -301,14 +302,10 @@ type PostState = {
         >
          Submit
         </Button>
-
-          </Typography>
-      
-        </CardContent>
-      
-    </Card>
-  
-            </div>
+    </Typography>
+   </CardContent>
+       </Card>
+       </div>
             
         )
     }

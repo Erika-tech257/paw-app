@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 interface ImgProps {
-    SessionToken: any
+    sessionToken: any
 }
 
 type ImgState = {
@@ -21,8 +21,8 @@ class ImagePost extends Component<ImgProps, ImgState> {
         //    copy secure url image from console goes into avUrl as default image
             
         }
-        
-        this.setState({ avUrl: ("") })
+        // uploaded image manually to cloudinary
+        this.setState({ avUrl: ("https://res.cloudinary.com/dc7cdwbh0/image/upload/v1611282353/Home%20Bound%20Paws/puppy-1903313_1280_fkacdx.jpg") })
     
     }
             handleSubmit = async (e: any) => {
@@ -33,7 +33,7 @@ class ImagePost extends Component<ImgProps, ImgState> {
             const response = await fetch('http://localhost:5000/user/cloudsign', {
                 method: 'GET',
                 headers: {
-                    'Authorization': this.props.SessionToken
+                    'Authorization': this.props.sessionToken
                 }
             })
 
@@ -41,14 +41,14 @@ class ImagePost extends Component<ImgProps, ImgState> {
 
             console.log(ts);
             
-            const fileInput = document.getElementById('file-input')
-            let file
-            if(fileInput !== null){
-                file = (fileInput as HTMLInputElement)!.files[0]
+            // const fileInput = document.getElementById('file-input')
+            // let file
+            // if(fileInput !== null){
+            //     file = (fileInput as HTMLInputElement)!.files[0]
 
-            }
+            // }
             // const file = HTMLElement.itemId('file-input').files[0]
-            // const file = (document.getElementById('file-input') as HTMLInputElement)!.files[0]
+            const file = (document.getElementById('file-input') as HTMLInputElement)!.files![0]
             // const file = (document.getElementById('file-input'))!.files[0]
             const formData = new FormData()
         
@@ -70,7 +70,7 @@ class ImagePost extends Component<ImgProps, ImgState> {
             const final = await (await fetch('http://localhost:5000/user/imageset', {
                 method: 'PUT',
                 headers:{
-                'Authorization': this.props.SessionToken,
+                'Authorization': this.props.sessionToken,
                 'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({ url: results.secure_url})

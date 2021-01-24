@@ -32,6 +32,8 @@ interface PostEditState {
 // Displays user posts and has an edit and delete button
  class PostEdit extends Component<PostEditProps,PostEditState> {
 
+  
+
   state: PostEditState;
 
      constructor(props:PostEditProps){
@@ -83,7 +85,7 @@ interface PostEditState {
 
             
             
-            const editurl = 'http://localhost:5000/pawpost/id'
+            const editurl = `http://localhost:5000/pawpost/${this.props.homePostsUpdate.id}`
 
           
 
@@ -116,9 +118,11 @@ interface PostEditState {
           }) 
         }
         
-        // componentDidUpdate = () => {
-        //   this.props.fetchHomePosts()
-        // }
+        componentDidUpdate = () => {
+          this.props.fetchHomePosts()
+        }
+
+        
      
     render() {
         return (
@@ -288,10 +292,10 @@ interface PostEditState {
         />
          <Button
           type="button"
-          // onClick={this.handleSubmit}
+          onClick={this.handleSubmit}
           fullWidth
           variant="contained"
-          color="primary"
+          color="secondary"
           className="deleteBtn"
         >
          Delete 

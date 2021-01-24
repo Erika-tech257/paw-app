@@ -13,7 +13,10 @@ import PostCatalog from './PostCatalog';
 interface IndexProps {
     updateUser: (userID: string) => any
     sessionToken: any
-
+    
+    
+   
+    
 
 }
 
@@ -99,7 +102,7 @@ class PostIndex extends Component<IndexProps, IState> {
                         </DialogActions>
                     </Container>
                 </Dialog>
-                {/* <PostCatalog homePosts={this.state.homePosts} fetchHomePosts={this.fetchHomePosts} sessionToken={this.props.sessionToken} /> */}
+                <PostCatalog fetchHomePosts={this.fetchHomePosts} sessionToken={this.props.sessionToken} homePosts={this.state.homePosts} />
             </div>
         );
     }

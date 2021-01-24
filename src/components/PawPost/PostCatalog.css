@@ -1,0 +1,11 @@
+.MuiGrid-root{
+    justify-content:center;
+    flex-wrap: wrap;
+    
+}
+
+.deleteBTn{
+    position:relative;
+    top: 5px;
+    bottom:40px;
+}
