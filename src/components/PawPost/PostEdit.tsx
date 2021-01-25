@@ -12,19 +12,21 @@ interface PostEditProps{
     updateUser: (userID: string) => any
     fetchHomePosts : any
     sessionToken: any
-    homePostsUpdate: any
+    homePosts: ([])
+    [key: string] :any
+    
     }
 
     
 interface PostEditState {
-    edtitle: string;
-    edanimal: string;
-    edcolor: string;
-    edcity: string;
-    edstate: string;
-    eddescription: string;
-    eddate: string;
-    edtime: string;
+    title: string;
+    animal: string;
+    color: string;
+    city: string;
+    state: string;
+    description: string;
+    date: string;
+    time: string;
     
 }
 
@@ -40,14 +42,14 @@ interface PostEditState {
         super(props)
         
         this.state = {
-            edtitle: "",
-            edanimal: "",
-            edcolor: "",
-            edcity: "",
-            edstate: "",
-            eddescription: "",
-            eddate: "",
-            edtime: ""
+            title: "",
+            animal: "",
+            color: "",
+            city: "",
+            state: "",
+            description: "",
+            date: "",
+            time: ""
          
           
         }
@@ -55,14 +57,14 @@ interface PostEditState {
        
         this.handleSubmit=this.handleSubmit.bind(this)
         console.log('Post Updated');
-        this.setState({ edtitle: this.props.homePostsUpdate.title})
-        this.setState({ edanimal: this.props.homePostsUpdate.animal})
-        this.setState({ edcolor: this.props.homePostsUpdate.color})
-        this.setState({ edcity: this.props.homePostsUpdate.city})
-        this.setState({ edstate: this.props.homePostsUpdate.state})
-        this.setState({ eddescription: this.props.homePostsUpdate.description})
-        this.setState({ eddate: this.props.homePostsUpdate.date})
-        this.setState({ edtime: this.props.homePostsUpdate.time})
+        this.setState({ title: this.props.Obj.title})
+        this.setState({ animal: this.props.Obj.animal})
+        this.setState({ color: this.props.Obj.color})
+        this.setState({ city: this.props.Obj.city})
+        this.setState({ state: this.props.Obj.state})
+        this.setState({ description: this.props.Obj.description})
+        this.setState({ date: this.props.Obj.date})
+        this.setState({ time: this.props.Obj.time})
         
       }
 
@@ -85,31 +87,31 @@ interface PostEditState {
 
             
             
-            const editurl = `http://localhost:5000/pawpost/${this.props.homePostsUpdate.id}`
+            
 
           
 
-            let editbody = {
+            let body = {
               pawpost: {
-              title: this.state.edtitle,
-              animal: this.state.edanimal,
-              color: this.state.edcolor,
-              city: this.state.edcity,
-              state: this.state.edstate,
-              description: this.state.eddescription,
-              date: this.state.eddate,
-              time: this.state.edtime,
+              title: this.state.title,
+              animal: this.state.animal,
+              color: this.state.color,
+              city: this.state.city,
+              state: this.state.state,
+              description: this.state.description,
+              date: this.state.date,
+              time: this.state.time,
               owner: this.props.updateUser
             }
           }
           
-          fetch(editurl, {
+          fetch(`http://localhost:5000/pawpost/${this.props.Obj.id}`, {
             method: 'PUT',
             headers: {
               'Content-Type': 'application/json',
               'Authorization': this.props.sessionToken,
             },
-            body: JSON.stringify(editbody)
+            body: JSON.stringify(body)
           })
           .then(r => r.json())
           .then(rObj => {
@@ -148,12 +150,12 @@ interface PostEditState {
           label="Title"
           name="title"
           autoComplete="title"
-          value={this.state.edtitle}
+          value={this.state.title}
           onChange={(e) => {
             this.setState({
-              edtitle: e.target.value
+              title: e.target.value
             })
-            console.log(this.state.edtitle);
+            console.log(this.state.title);
           }}
           autoFocus
         />
@@ -167,12 +169,12 @@ interface PostEditState {
           label="Animal"
           name="animal"
           autoComplete="animal"
-          value={this.state.edanimal}
+          value={this.state.animal}
           onChange={(e) => {
             this.setState({
-              edanimal: e.target.value
+              animal: e.target.value
             })
-            console.log(this.state.edanimal);
+            console.log(this.state.animal);
           }}
           autoFocus
         />
@@ -186,12 +188,12 @@ interface PostEditState {
           label="Color"
           name="color"
           autoComplete="color"
-          value={this.state.edcolor}
+          value={this.state.color}
           onChange={(e) => {
             this.setState({
-              edcolor: e.target.value
+              color: e.target.value
             })
-            console.log(this.state.edcolor);
+            console.log(this.state.color);
           }}
           autoFocus
         />
@@ -205,12 +207,12 @@ interface PostEditState {
           label="City"
           name="city"
           autoComplete="city"
-          value={this.state.edcity}
+          value={this.state.city}
           onChange={(e) => {
             this.setState({
-              edcity: e.target.value
+              city: e.target.value
             })
-            console.log(this.state.edcity);
+            console.log(this.state.city);
           }}
           autoFocus
         />
@@ -224,12 +226,12 @@ interface PostEditState {
           label="State"
           name="state"
           autoComplete="state"
-          value={this.state.edstate}
+          value={this.state.state}
           onChange={(e) => {
             this.setState({
-              edstate: e.target.value
+              state: e.target.value
             })
-            console.log(this.state.edstate);
+            console.log(this.state.state);
           }}
           autoFocus
         />
@@ -243,12 +245,12 @@ interface PostEditState {
           label="Description"
           name="description"
           autoComplete="description"
-          value={this.state.eddescription}
+          value={this.state.description}
           onChange={(e) => {
             this.setState({
-              eddescription: e.target.value
+              description: e.target.value
             })
-            console.log(this.state.eddescription);
+            console.log(this.state.description);
           }}
           autoFocus
         />    
@@ -262,12 +264,12 @@ interface PostEditState {
           label="Date"
           name="date"
           autoComplete="date"
-          value={this.state.eddate}
+          value={this.state.date}
           onChange={(e) => {
             this.setState({
-              eddate: e.target.value
+              date: e.target.value
             })
-            console.log(this.state.eddate);
+            console.log(this.state.date);
           }}
           autoFocus
         />    
@@ -281,12 +283,12 @@ interface PostEditState {
           label="Time"
           name="time"
           autoComplete="time"
-          value={this.state.edtime}
+          value={this.state.time}
           onChange={(e) => {
             this.setState({
-              edtime: e.target.value
+              time: e.target.value
             })
-            console.log(this.state.edtime);
+            console.log(this.state.time);
           }}
           autoFocus
         />

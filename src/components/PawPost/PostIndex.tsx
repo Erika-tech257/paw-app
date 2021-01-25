@@ -8,16 +8,14 @@ import Container from '@material-ui/core/Container';
 import Popper from '@material-ui/core/Popper';
 import PostCreate from './PostCreate';
 import PostCatalog from './PostCatalog';
+import PostEdit from './PostEdit'
 
 
 interface IndexProps {
     updateUser: (userID: string) => any
     sessionToken: any
-    
-    
    
     
-
 }
 
 interface IState {
@@ -93,7 +91,7 @@ class PostIndex extends Component<IndexProps, IState> {
                     <Container maxWidth="sm">
                         <PostCreate updateUser={this.props.updateUser} fetchHomePosts={this.fetchHomePosts} sessionToken={this.props.sessionToken} />
                         <br />
-                        {/* <PostEdit updateUser = {this.props.updateUser} fetchHomePosts={this.fetchHomePosts} sessionToken={this.props.sessionToken}/> */}
+                        {/* <PostEdit updateUser = {this.props.updateUser} fetchHomePosts={this.fetchHomePosts} sessionToken={this.props.sessionToken} homePosts={this.state.homePosts}/> */}
 
                         <DialogActions>
                             <Button onClick={this.handleClose} color="primary">

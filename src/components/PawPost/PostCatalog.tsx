@@ -1,5 +1,6 @@
 import React from 'react'
 import Grid from '@material-ui/core/Grid';
+import Button from '@material-ui/core/Button';
 import PostEdit from './PostEdit';
 import PostItems from './PostItems'
 import './PostCatalog.css'
@@ -14,27 +15,28 @@ interface CatalogProps {
 
 
 
+
+
 // homePosts are the post objects that the PostCatalog will map(display) to the page. fetchHomePosts allow us to update the posts if user decides to delete. sessionToken needed for delete endpoint. .map needs a return for every element mapped over in the array
 
 class PostCatalog extends React.Component<CatalogProps,{}> {
     constructor(props: CatalogProps) {
         super(props)
 
+// Displays all Logs 
 
-       }
-    
+
+    }
            
     render() {
         return(
-            <div>
-          
-               
+            <div> 
              <h2 className="Catalog">PawPost History</h2>
                {
                    this.props.homePosts?.map((Obj:any,index:any) => { return(
                    <div key = {Obj.id}>
                        <Grid container spacing={2} >
-                       <Grid item xs={4}>
+                       <Grid item xs={4} sm={12}>
                    <p>Id:{Obj.id}</p>
                    <p>Title:{Obj.title}</p>
                    <p>Animal:{Obj.animal}</p>
@@ -48,7 +50,9 @@ class PostCatalog extends React.Component<CatalogProps,{}> {
                    </Grid>
                    <div>
                        <PostItems fetchHomePosts={this.props.fetchHomePosts} sessionToken={this.props.sessionToken} homePosts={this.props.homePosts}/>
-                  
+
+                
+                     
                    </div>
                    </Grid>
                    </div>

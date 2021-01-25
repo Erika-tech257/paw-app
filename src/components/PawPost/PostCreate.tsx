@@ -6,7 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import ImagePost from './ImagePost'
-import PostEdit from './PostEdit'
+
 
 interface PostProps{
 updateUser: (userID: string) => any
@@ -19,7 +19,7 @@ sessionToken: any
 
 // use sessiontoken to access local storage
 
-type PostState = {
+interface PostState {
     title: string;
     animal: string;
     color: string;
