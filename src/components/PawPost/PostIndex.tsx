@@ -14,15 +14,15 @@ import PostEdit from './PostEdit'
 interface IndexProps {
     updateUser: (userID: string) => any
     sessionToken: any
-   
-    
+
+
 }
 
 interface IState {
     homePosts: ([]),
     Posts: boolean
     open: boolean
-
+    setHomePosts:(e:any)=>void
 
 }
 
@@ -36,8 +36,13 @@ class PostIndex extends Component<IndexProps, IState> {
         this.state = {
             homePosts: ([]),
             Posts: false,
-            open: true
+            open: true,
+            setHomePosts:(e)=>
+            this.setState({
+                homePosts:e
+            })
         }
+      
 
         // this.setState({homePosts: [] })
         // this.setState({ Posts: false})
@@ -47,8 +52,13 @@ class PostIndex extends Component<IndexProps, IState> {
     PostToggle = () => {
         this.setState({ Posts: !this.state.Posts })
     }
+    HomePostSet=(logdata:any)=>{
+        this.setState({
+            homePosts: logdata
+        })
+    }
 
-    fetchHomePosts() {
+    fetchHomePosts = () => {
         fetch('http://localhost:5000/pawpost/allLogs', {
             method: 'GET',
             headers: ({
@@ -56,13 +66,16 @@ class PostIndex extends Component<IndexProps, IState> {
             })
         }).then((res) => res.json())
             .then((logdata) => {
-                this.setState({
-                    homePosts: logdata
-                })
+            //     this.setState({
+            //         homePosts: logdata
+            //     })
+            this.state.setHomePosts(logdata)
+            console.log(logdata)
             }).catch(err => console.log(err))
-        console.log(this.fetchHomePosts);
+        // console.log(this.fetchHomePosts);
 
     }
+  
 
 
     // Figure out componentdidmount code console should return an empty array or an array to show posts current user created
