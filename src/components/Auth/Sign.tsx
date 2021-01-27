@@ -1,6 +1,7 @@
 import React from 'react'
 import './Sign.css';
 import Button from '@material-ui/core/Button';
+import LockIcon from '@material-ui/icons/Lock';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
@@ -173,6 +174,7 @@ class Sign extends React.Component<AcceptProps, SignState>{
           variant="contained"
           color="primary"
           className="{classes.submit}"
+          startIcon={<LockIcon />}
         >
           {this.state.login ? "Sign In" : "Sign Up"}
           </Button>

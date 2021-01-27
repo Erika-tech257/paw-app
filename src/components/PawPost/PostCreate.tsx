@@ -5,6 +5,8 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import CancelIcon from '@material-ui/icons/Cancel';
+import PublishIcon from '@material-ui/icons/Publish';
 import ImagePost from './ImagePost'
 
 
@@ -51,8 +53,7 @@ interface PostState {
 
          }
 
-         
-     
+      
          this.handleSubmit = this.handleSubmit.bind(this)
          console.log("User info inputed");
          this.setState({ title: ""})
@@ -63,7 +64,7 @@ interface PostState {
          this.setState({ description: ""})
          this.setState({ date: ""})
          this.setState({ time: ""})
-        
+         
          
         }
         
@@ -283,9 +284,10 @@ interface PostState {
           fullWidth
           variant="contained"
           color="primary"
-          className="editBtn"
+          className="CancelBtn"
+          startIcon={<CancelIcon />}
         >
-         Edit
+        Cancel
         </Button> 
        
 
@@ -299,6 +301,7 @@ interface PostState {
           variant="contained"
           color="primary"
           className="submitPostBtn"
+          startIcon={<PublishIcon />}
         >
          Submit
         </Button>

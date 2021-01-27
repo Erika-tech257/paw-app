@@ -1,19 +1,19 @@
 import React, { Component } from 'react'
 
 
-
+//Pass props of ObjId=postId to get pawpost user and obj.owner to get who the post belongs to
 
 interface CommentProps{
     updateUser: (userID: string) => any
     fetchHomePosts : any
     sessionToken: any
-    
+    ObjId: string    
 
     }
 
 interface CommentState{
     description: string;
-    owner: string;
+    
 }
 
  class ComCreate extends Component<CommentProps,CommentState> {
@@ -22,12 +22,12 @@ interface CommentState{
 
          this.state ={
              description: "",
-             owner:""
+            
          }
        
          console.log('comment posted')
          this.setState({ description: ""})
-         this.setState({ owner: ""})
+         
      }
      
   
@@ -39,7 +39,7 @@ interface CommentState{
             }
         }
    
-         fetch('http://localhost:5000/comments/new/comment',{
+         fetch(`http://localhost:5000/comments/new/${this.props.ObjId}/comment`,{
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json', 
@@ -57,6 +57,7 @@ interface CommentState{
         return (
 
             <div>
+                
                 
             </div>
         )

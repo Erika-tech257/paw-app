@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Button from '@material-ui/core/Button';
+import BackspaceIcon from '@material-ui/icons/Backspace';
 
 
 interface OutProps {
@@ -40,6 +41,7 @@ class Logout extends Component<OutProps,OutState> {
           variant="contained"
           color="secondary"
           className="{classes.submit}"
+          startIcon={<BackspaceIcon />}
         >
           {this.state.logout}  Logout
           </Button>

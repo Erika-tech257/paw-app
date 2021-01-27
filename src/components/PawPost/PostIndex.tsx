@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 // import Typography from '@material-ui/core/Typography';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
-import Modal from '@material-ui/core/Modal';
+
 import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
 import Popper from '@material-ui/core/Popper';
@@ -20,7 +20,6 @@ interface IndexProps {
 
 interface IState {
     homePosts: ([]),
-    Posts: boolean
     open: boolean
     setHomePosts:(e:any)=>void
 
@@ -35,8 +34,7 @@ class PostIndex extends Component<IndexProps, IState> {
 
         this.state = {
             homePosts: ([]),
-            Posts: false,
-            open: true,
+            open: false,
             setHomePosts:(e)=>
             this.setState({
                 homePosts:e
@@ -46,12 +44,12 @@ class PostIndex extends Component<IndexProps, IState> {
 
         // this.setState({homePosts: [] })
         // this.setState({ Posts: false})
-        this.setState({ open: true })
+        this.setState({ open: false })
     }
 
-    PostToggle = () => {
-        this.setState({ Posts: !this.state.Posts })
-    }
+    // PostToggle = () => {
+    //     this.setState({ Posts: this.state.Posts })
+    // }
     HomePostSet=(logdata:any)=>{
         this.setState({
             homePosts: logdata
@@ -104,8 +102,6 @@ class PostIndex extends Component<IndexProps, IState> {
                     <Container maxWidth="sm">
                         <PostCreate updateUser={this.props.updateUser} fetchHomePosts={this.fetchHomePosts} sessionToken={this.props.sessionToken} />
                         <br />
-                        {/* <PostEdit updateUser = {this.props.updateUser} fetchHomePosts={this.fetchHomePosts} sessionToken={this.props.sessionToken} homePosts={this.state.homePosts}/> */}
-
                         <DialogActions>
                             <Button onClick={this.handleClose} color="primary">
                                 Close

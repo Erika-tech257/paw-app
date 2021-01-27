@@ -2,69 +2,102 @@ import React, { Component } from 'react'
 import Button from '@material-ui/core/Button';
 import DeleteIcon from '@material-ui/icons/Delete';
 import UpdateIcon from '@material-ui/icons/Update';
+import PostEdit from './PostEdit'
+import Container from '@material-ui/core/Container';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
 
 interface ButtonProps {
     fetchHomePosts: any;
     sessionToken: any
     homePosts: Array<object>
-    ObjId:string
+    ObjId: string
 }
-
-
+interface ButtonState {
+    open: boolean
+}
 
 // Getting an error becasue id is not defined
 
 
 
- class PostItems extends Component<ButtonProps,{}> {
+class PostItems extends Component<ButtonProps, ButtonState> {
     constructor(props: ButtonProps) {
         super(props)
- 
 
-    this.handleSubmit = this.handleSubmit.bind(this)
-    console.log("User info inputed");
-}
-       handleSubmit = (e: any) => {
-       e.preventDefault();
+        this.state = {
+            open: false
+        }
 
-      
+        this.setState({ open: false })
+
+
+
+        this.handleSubmit = this.handleSubmit.bind(this)
+        console.log("User info inputed");
+    }
+    handleSubmit = (e: any) => {
+        e.preventDefault();
+
+
         console.log(this.props.ObjId)
-       fetch(`http://localhost:5000/pawpost/${this.props.ObjId}`,{
-           method:'DELETE',
-           headers: {
-                   'Content-Type':'application/json',
-                   'Authorization':this.props.sessionToken
-           }
-       })
-       .then((res)=> res.json())
-       .then((results) =>{
-           console.log(results)
-            this.props.fetchHomePosts()
+        fetch(`http://localhost:5000/pawpost/${this.props.ObjId}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': this.props.sessionToken
+            }
         })
-       .catch((err)=>console.log(err))
+            .then((res) => res.json())
+            .then((results) => {
+                console.log(results)
+                this.props.fetchHomePosts()
+            })
+            .catch((err) => console.log(err))
 
- 
+
+    }
+
+    handleOpen = () => {
+        this.setState({ open: true });
+    }
+    handleClose = () => {
+        this.setState({ open: false });
     }
     render() {
         return (
             <div>
-                  <Button
+                <Button
                     size="medium"
                     variant="contained"
                     onClick={this.handleSubmit}
                     startIcon={<DeleteIcon />}
-                    >
-                        Delete
+                >
+                    Delete
                     </Button>
 
-                    <Button
+                <Button
                     size="medium"
                     variant="contained"
-                    // onClick={this.handleSubmit}
+                    onClick={this.handleOpen}
                     startIcon={<UpdateIcon />}
-                    >
-                        Update
+                >
+                    Update
                     </Button>
+                <Dialog
+                    open={this.state.open}
+                    onClose={this.handleClose}
+                    aria-labelledby="responsive-dialog-title">
+                    <Container maxWidth="sm">
+                        <PostEdit fetchHomePosts={this.props.fetchHomePosts} sessionToken={this.props.sessionToken} homePosts={this.props.homePosts} ObjId={this.props.ObjId} />
+                        <br />
+                        <DialogActions>
+                            <Button onClick={this.handleClose} color="primary">
+                                Close
+                             </Button>
+                        </DialogActions>
+                    </Container>
+                </Dialog>
             </div>
         )
     }

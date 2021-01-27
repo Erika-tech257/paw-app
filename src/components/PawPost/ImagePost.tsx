@@ -17,7 +17,7 @@ class ImagePost extends Component<ImgProps, ImgState> {
         super(props)
 
         this.state = {
-            avUrl: "",
+            avUrl: "https://res.cloudinary.com/dc7cdwbh0/image/upload/v1611282353/Home%20Bound%20Paws/puppy-1903313_1280_fkacdx.jpg",
         //    copy secure url image from console goes into avUrl as default image
             
         }
@@ -65,7 +65,7 @@ class ImagePost extends Component<ImgProps, ImgState> {
         
             console.log(results)
         
-            this.setState({avUrl:(results.secure_url)})
+            this.setState({avUrl:results.secure_url})
         
             const final = await (await fetch('http://localhost:5000/user/imageset', {
                 method: 'PUT',

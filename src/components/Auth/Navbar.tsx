@@ -1,6 +1,6 @@
 import { Component } from 'react'
 import Link from '@material-ui/core/Link';
-// import Typography from '@material-ui/core/Typography';
+
 import Logout from './Logout'
 import './NavBar.css'
 interface NavProps {
