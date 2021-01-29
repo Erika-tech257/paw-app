@@ -1,14 +1,11 @@
 import React, { Component } from 'react'
-// import Typography from '@material-ui/core/Typography';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
-
 import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
-import Popper from '@material-ui/core/Popper';
 import PostCreate from './PostCreate';
 import PostCatalog from './PostCatalog';
-import PostEdit from './PostEdit'
+
 
 
 interface IndexProps {
@@ -109,7 +106,7 @@ class PostIndex extends Component<IndexProps, IState> {
                         </DialogActions>
                     </Container>
                 </Dialog>
-                <PostCatalog fetchHomePosts={this.fetchHomePosts} sessionToken={this.props.sessionToken} homePosts={this.state.homePosts} />
+                <PostCatalog updateUser={this.props.updateUser} fetchHomePosts={this.fetchHomePosts} sessionToken={this.props.sessionToken} homePosts={this.state.homePosts} />
             </div>
         );
     }

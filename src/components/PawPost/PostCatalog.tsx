@@ -1,16 +1,18 @@
 import React from 'react'
 import Grid from '@material-ui/core/Grid';
-import Button from '@material-ui/core/Button';
-import PostEdit from './PostEdit';
 import PostItems from './PostItems'
 import './PostCatalog.css'
+import CommentHistory from '../Comments/CommentHistory'
+
 
 
 
 interface CatalogProps {
+    updateUser: (userID: string) => any
     fetchHomePosts: any;
     sessionToken: any
     homePosts: Array<object>
+    
 }
 
 interface CatalogState {
@@ -42,13 +44,14 @@ class PostCatalog extends React.Component<CatalogProps, CatalogState> {
                 <h2 className="Catalog">PawPost History</h2>
                 {
                     this.props.homePosts?.map((Obj: any, index: any) => {
+                        console.log(Obj)
                         return (
                             <div key={Obj.id} onMouseEnter={() => {
                                 this.setState({ postId: Obj.id })
                                 console.log(Obj.id)
                             }}>
-                                <Grid container spacing={2} >
-                                    <Grid item xs={4} sm={12}>
+                                <Grid container spacing={2}  >
+                                    <Grid item xs={4} sm={12} zeroMinWidth>
                                         <p>Id:{Obj.id}</p>
                                         <p>Title:{Obj.title}</p>
                                         <p>Animal:{Obj.animal}</p>
@@ -61,8 +64,9 @@ class PostCatalog extends React.Component<CatalogProps, CatalogState> {
                                         <p>Username:{Obj.owner}</p>
                                     </Grid>
                                     <div>
-                                        <PostItems ObjId={Obj.id} fetchHomePosts={this.props.fetchHomePosts} sessionToken={this.props.sessionToken} homePosts={this.props.homePosts} />
-
+                                        <PostItems updateUser={this.props.updateUser} ObjId={Obj.id} fetchHomePosts={this.props.fetchHomePosts} sessionToken={this.props.sessionToken} homePosts={this.props.homePosts} />
+                                      
+                                        <CommentHistory Obj={Obj} />
 
 
                                     </div>

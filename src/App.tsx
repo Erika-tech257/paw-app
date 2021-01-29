@@ -67,10 +67,6 @@ class App extends React.Component<AppProps, AppState>{
       
     }
 
-//      UserViews = () => {
-//     return (this.state.SessionToken === localStorage.getItem('token') ? <UserPost token = {this.SessionToken} /> :
-//     < Sign updateToken={this.updateToken} />)
-// }
   render() {
     return (
       <div className = "App" >

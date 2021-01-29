@@ -6,8 +6,11 @@ import PostEdit from './PostEdit'
 import Container from '@material-ui/core/Container';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
+import CommentIndex from '../Comments/CommentIndex'
+
 
 interface ButtonProps {
+    updateUser: (userID: string) => any
     fetchHomePosts: any;
     sessionToken: any
     homePosts: Array<object>
@@ -98,6 +101,7 @@ class PostItems extends Component<ButtonProps, ButtonState> {
                         </DialogActions>
                     </Container>
                 </Dialog>
+                <CommentIndex ObjId={this.props.ObjId} updateUser={this.props.updateUser} fetchHomePosts={this.props.fetchHomePosts} sessionToken={this.props.sessionToken}  />
             </div>
         )
     }

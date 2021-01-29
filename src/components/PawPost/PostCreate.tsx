@@ -1,6 +1,6 @@
 import React from 'react'
 import Card from '@material-ui/core/Card';
-import Container from '@material-ui/core/Container';
+// import Container from '@material-ui/core/Container';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
@@ -32,6 +32,9 @@ interface PostState {
     time: string;
     owner: string;
     
+   
+    
+    
 }
 
 
@@ -48,12 +51,10 @@ interface PostState {
              description: "",
              date: "",
              time: "",
-             owner: ""
-             
+             owner: "" 
 
          }
 
-      
          this.handleSubmit = this.handleSubmit.bind(this)
          console.log("User info inputed");
          this.setState({ title: ""})
@@ -64,15 +65,10 @@ interface PostState {
          this.setState({ description: ""})
          this.setState({ date: ""})
          this.setState({ time: ""})
-         
-         
         }
-        
-        // Toggle between user edit for post
-
        
 
-         handleSubmit (e: any) {
+         handleSubmit = (e: any) => {
           e.preventDefault();
 
          let serverLink = 'http://localhost:5000'
@@ -91,6 +87,7 @@ interface PostState {
              time: this.state.time,
              owner: this.props.updateUser
            }
+           
          }
 
          fetch(url, {
@@ -106,12 +103,6 @@ interface PostState {
            console.log(rObj); 
            this.props.fetchHomePosts();
          });   
-
-        //  Toggle to Edit post
-        // const editPostUpdate = (homePosts) =>{
-        //   setHomePostsUpdate(homePosts)
-        //   console.log(homePosts);
-        // }
      }
      
     render() {
@@ -303,7 +294,8 @@ interface PostState {
           className="submitPostBtn"
           startIcon={<PublishIcon />}
         >
-         Submit
+          Submit
+          
         </Button>
     </Typography>
    </CardContent>

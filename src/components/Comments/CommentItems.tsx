@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-class Comindex extends Component {
+ class CommentItems extends Component {
     render() {
         return (
             <div>
@@ -9,4 +9,4 @@ class Comindex extends Component {
         )
     }
 }
-export default Comindex
+export default CommentItems

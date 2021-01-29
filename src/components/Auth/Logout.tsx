@@ -40,7 +40,7 @@ class Logout extends Component<OutProps,OutState> {
           onClick={this.logout}
           variant="contained"
           color="secondary"
-          className="{classes.submit}"
+          className={"{classes.submit}"}
           startIcon={<BackspaceIcon />}
         >
           {this.state.logout}  Logout
