@@ -1,16 +1,18 @@
-img{
+.img{
     position: relative;
     top: 10px;
     bottom: 0px;
-    width:40%
+    width:5px;
+    height: 5px;
 }
 
 .loadButton{
     margin: .5em auto;
 }
 
-form{
+.form{
     position: relative;
     top: 20px;
     bottom:10px;
 }
+

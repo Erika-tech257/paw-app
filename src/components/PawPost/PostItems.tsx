@@ -10,7 +10,7 @@ import CommentIndex from '../Comments/CommentIndex'
 
 
 interface ButtonProps {
-    updateUser: (userID: string) => any
+    updateUser: (username: string) => void
     fetchHomePosts: any;
     sessionToken: any
     homePosts: Array<object>

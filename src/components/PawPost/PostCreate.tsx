@@ -11,7 +11,7 @@ import ImagePost from './ImagePost'
 
 
 interface PostProps{
-updateUser: (userID: string) => any
+updateUser: (username: string) => void
 fetchHomePosts : any
 sessionToken: any
 
@@ -269,21 +269,7 @@ interface PostState {
           }}
           autoFocus
         />
-         <Button
-          type="button"
-          // onClick={this.handleSubmit}
-          fullWidth
-          variant="contained"
-          color="primary"
-          className="CancelBtn"
-          startIcon={<CancelIcon />}
-        >
-        Cancel
-        </Button> 
-       
-
-          <br />
-          <br/>
+     
 
           <Button
           type="submit"

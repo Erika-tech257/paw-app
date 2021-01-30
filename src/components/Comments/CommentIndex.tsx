@@ -10,7 +10,7 @@ import ComCreate from './ComCreate';
 // All comments
 
 interface CommentProps {
-    updateUser: (userID: string) => any
+    updateUser: (username: string) => void
     fetchHomePosts: any;
     sessionToken: any
     ObjId: string
@@ -77,8 +77,9 @@ export default class CommentIndex extends Component<CommentProps, CommentState> 
             <div>
                 
                 <Button color="primary" onClick={this.handleOpen} startIcon={<AddCommentIcon />}>
-                        Paw Comment
+                         Comment
                 </Button>
+               
                     <Dialog
                         open={this.state.open}
                         onClose={this.handleClose}

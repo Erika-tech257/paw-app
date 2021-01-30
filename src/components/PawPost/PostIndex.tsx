@@ -2,14 +2,16 @@ import React, { Component } from 'react'
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import Button from '@material-ui/core/Button';
+import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
 import PostCreate from './PostCreate';
 import PostCatalog from './PostCatalog';
 
 
 
+
 interface IndexProps {
-    updateUser: (userID: string) => any
+    updateUser: (username: string) => void
     sessionToken: any
 
 
@@ -18,7 +20,7 @@ interface IndexProps {
 interface IState {
     homePosts: ([]),
     open: boolean
-    setHomePosts:(e:any)=>void
+    setHomePosts: (e: any) => void
 
 }
 
@@ -32,12 +34,12 @@ class PostIndex extends Component<IndexProps, IState> {
         this.state = {
             homePosts: ([]),
             open: false,
-            setHomePosts:(e)=>
-            this.setState({
-                homePosts:e
-            })
+            setHomePosts: (e) =>
+                this.setState({
+                    homePosts: e
+                })
         }
-      
+
 
         // this.setState({homePosts: [] })
         // this.setState({ Posts: false})
@@ -47,7 +49,7 @@ class PostIndex extends Component<IndexProps, IState> {
     // PostToggle = () => {
     //     this.setState({ Posts: this.state.Posts })
     // }
-    HomePostSet=(logdata:any)=>{
+    HomePostSet = (logdata: any) => {
         this.setState({
             homePosts: logdata
         })
@@ -61,16 +63,16 @@ class PostIndex extends Component<IndexProps, IState> {
             })
         }).then((res) => res.json())
             .then((logdata) => {
-            //     this.setState({
-            //         homePosts: logdata
-            //     })
-            this.state.setHomePosts(logdata)
-            console.log(logdata)
+                //     this.setState({
+                //         homePosts: logdata
+                //     })
+                this.state.setHomePosts(logdata)
+                console.log(logdata)
             }).catch(err => console.log(err))
         // console.log(this.fetchHomePosts);
 
     }
-  
+
 
 
     // Figure out componentdidmount code console should return an empty array or an array to show posts current user created
@@ -106,7 +108,12 @@ class PostIndex extends Component<IndexProps, IState> {
                         </DialogActions>
                     </Container>
                 </Dialog>
-                <PostCatalog updateUser={this.props.updateUser} fetchHomePosts={this.fetchHomePosts} sessionToken={this.props.sessionToken} homePosts={this.state.homePosts} />
+                <Grid container direction="row" justify="center" alignItems="center">
+                   <Grid item xs={12} sm={6} md={4}>
+                        <PostCatalog updateUser={this.props.updateUser} fetchHomePosts={this.fetchHomePosts} sessionToken={this.props.sessionToken} homePosts={this.state.homePosts} />
+                 </Grid>
+                </Grid>
+
             </div>
         );
     }

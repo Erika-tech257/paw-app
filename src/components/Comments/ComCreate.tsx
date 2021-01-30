@@ -10,7 +10,7 @@ import { cyan } from '@material-ui/core/colors';
 //Pass props of ObjId=postId to get pawpost user and obj.owner to get who the post belongs to
 
 interface CommentProps {
-    updateUser: (userID: string) => any
+    updateUser: (username: string) => void
     fetchHomePosts: any
     sessionToken: any
     ObjId: string
@@ -119,6 +119,7 @@ class ComCreate extends Component<CommentProps, CommentState> {
                     <br />
 
                 </form>
+                
 
             </div>
         )

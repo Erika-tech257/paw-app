@@ -17,7 +17,7 @@ class ImagePost extends Component<ImgProps, ImgState> {
         super(props)
 
         this.state = {
-            avUrl: "https://res.cloudinary.com/dc7cdwbh0/image/upload/v1611282353/Home%20Bound%20Paws/puppy-1903313_1280_fkacdx.jpg",
+            avUrl: "",
         //    copy secure url image from console goes into avUrl as default image
             
         }

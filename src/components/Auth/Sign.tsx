@@ -11,6 +11,8 @@ import Container from '@material-ui/core/Container';
 
 interface AcceptProps {
   updateToken: (token: string) => void;
+  updateUser:(username:string) => void
+  
 }
 
 // can also use interface/glossary
@@ -88,7 +90,11 @@ class Sign extends React.Component<AcceptProps, SignState>{
       body: JSON.stringify(reqBody)
     })
       .then(r => r.json())
-      .then(rObj => this.props.updateToken(rObj.sessiontoken));
+      .then(rObj => {
+        this.props.updateToken(rObj.sessiontoken)
+        this.props.updateUser(rObj.user.username)
+        console.log(rObj.user.username)
+      });
   }
   SignupForm = () => {
     if (this.state.login) {
