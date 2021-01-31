@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Button from '@material-ui/core/Button';
 import BackspaceIcon from '@material-ui/icons/Backspace';
 
+// Just a button, when user logs out sessiontoken is cleared 
 
 interface OutProps {
     clearToken: () => void

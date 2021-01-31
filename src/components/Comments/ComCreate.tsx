@@ -4,6 +4,7 @@ import Button from '@material-ui/core/Button';
 import { withStyles, Theme } from '@material-ui/core/styles';
 import { cyan } from '@material-ui/core/colors';
 import CommentEdit from './CommentEdit'
+import APIURL from '../../environment'
 
 
 
@@ -67,7 +68,9 @@ class ComCreate extends Component<CommentProps, CommentState> {
             }
         }
 
-        fetch(`http://localhost:5000/comments/new/${this.props.ObjId}/comment`, {
+        // `http://localhost:5000/comments/new/${this.props.ObjId}/comment`
+
+        fetch(`${APIURL}/comments/new/${this.props.ObjId}/comment`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

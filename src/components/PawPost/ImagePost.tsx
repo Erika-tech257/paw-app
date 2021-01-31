@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import APIURL from '../../environment'
 
 interface ImgProps {
     sessionToken: any
@@ -28,9 +29,9 @@ class ImagePost extends Component<ImgProps, ImgState> {
             handleSubmit = async (e: any) => {
             e.preventDefault()
 
-            // let serverLink = 'http://localhost:5000'
+            // 'http://localhost:5000/user/cloudsign'
 
-            const response = await fetch('http://localhost:5000/user/cloudsign', {
+            const response = await fetch(`${APIURL}/user/cloudsign`, {
                 method: 'GET',
                 headers: {
                     'Authorization': this.props.sessionToken
@@ -66,8 +67,10 @@ class ImagePost extends Component<ImgProps, ImgState> {
             console.log(results)
         
             this.setState({avUrl:results.secure_url})
+
+            // 'http://localhost:5000/user/imageset'
         
-            const final = await (await fetch('http://localhost:5000/user/imageset', {
+            const final = await (await fetch(`${APIURL}/user/imageset`, {
                 method: 'PUT',
                 headers:{
                 'Authorization': this.props.sessionToken,

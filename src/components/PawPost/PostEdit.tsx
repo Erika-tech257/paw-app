@@ -7,6 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import ImagePost from './ImagePost'
+import APIURL from '../../environment'
 
 interface PostEditProps {
   fetchHomePosts: any
@@ -91,8 +92,10 @@ class PostEdit extends Component<PostEditProps, PostEditState> {
       }
     }
 
+    // `http://localhost:5000/pawpost/${this.props.ObjId}`
+
       console.log(this.props.ObjId);
-    fetch(`http://localhost:5000/pawpost/${this.props.ObjId}`, {
+    fetch(`${APIURL}/pawpost/${this.props.ObjId}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',

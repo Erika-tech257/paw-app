@@ -3,6 +3,7 @@ import Button from '@material-ui/core/Button';
 import PublishIcon from '@material-ui/icons/Publish';
 import { withStyles, Theme } from '@material-ui/core/styles';
 import { cyan } from '@material-ui/core/colors';
+import APIURL from '../../environment'
 
 interface EditProps {
     // updateUser: (username: string) => void
@@ -48,7 +49,9 @@ const ColorButton = withStyles((theme: Theme) => ({
               }
           }
 
-          fetch(`http://localhost:5000/comments/my/${this.props.ObjId}`,{
+        //   `http://localhost:5000/comments/my/${this.props.ObjId}`
+
+          fetch(`${APIURL}/comments/my/${this.props.ObjId}`,{
               method: 'PUT',
               headers: {
                   'Content-Type': 'application/json',

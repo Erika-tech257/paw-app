@@ -6,16 +6,15 @@ import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
 import PostCreate from './PostCreate';
 import PostCatalog from './PostCatalog';
+import APIURL from '../../environment'
 
 
-
+// Displays all posts
 
 interface IndexProps {
     updateUser: (username: string) => void
     sessionToken: any
     
-
-
 }
 
 interface IState {
@@ -56,8 +55,10 @@ class PostIndex extends Component<IndexProps, IState> {
         })
     }
 
+    // 'http://localhost:5000/pawpost/allLogs'
+
     fetchHomePosts = () => {
-        fetch('http://localhost:5000/pawpost/allLogs', {
+        fetch(`${APIURL}/pawpost/allLogs`, {
             method: 'GET',
             headers: ({
                 'Content-Type': 'application/json',

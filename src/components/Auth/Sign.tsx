@@ -8,6 +8,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
+import APIURL from '../../environment'
 
 interface AcceptProps {
   updateToken: (token: string) => void;
@@ -70,11 +71,11 @@ class Sign extends React.Component<AcceptProps, SignState>{
     
 
     // Sing up not working 500 error internal server, but login works
-    let serverLink = 'http://localhost:5000'
-
-    const url = `${serverLink}/user/${this.state.login ? 'login': 'signup'}`
     
-    // const url = ('http://localhost:5000/user/login')
+    // let serverLink = 'http://localhost:5000'
+
+    // const url = `${serverLink}/user/${this.state.login ? 'login': 'signup'}`
+    
     let reqBody={
         user:{
           username: this.state.username, 
@@ -82,7 +83,7 @@ class Sign extends React.Component<AcceptProps, SignState>{
           email: this.state.email
         }
     }
-    fetch(url, {
+    fetch(`${APIURL}/user/${this.state.login? 'login': 'signup'}`, {
       method: 'POST',
       headers:{
         'Content-Type': 'application/json',

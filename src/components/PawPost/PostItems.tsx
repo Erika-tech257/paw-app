@@ -7,6 +7,7 @@ import Container from '@material-ui/core/Container';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import CommentIndex from '../Comments/CommentIndex'
+import APIURL from '../../environment'
 
 
 interface ButtonProps {
@@ -42,9 +43,10 @@ class PostItems extends Component<ButtonProps, ButtonState> {
     handleSubmit = (e: any) => {
         e.preventDefault();
 
+        // `http://localhost:5000/pawpost/${this.props.ObjId}
 
         console.log(this.props.ObjId)
-        fetch(`http://localhost:5000/pawpost/${this.props.ObjId}`, {
+        fetch(`${APIURL}/pawpost/${this.props.ObjId}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',

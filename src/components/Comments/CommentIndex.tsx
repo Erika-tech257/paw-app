@@ -5,9 +5,10 @@ import DialogActions from '@material-ui/core/DialogActions';
 import Container from '@material-ui/core/Container';
 import AddCommentIcon from '@material-ui/icons/AddComment';
 import ComCreate from './ComCreate';
+import APIURL from '../../environment'
 
 
-// All comments
+// Displays all comments
 
 interface CommentProps {
     updateUser: (username: string) => void
@@ -45,9 +46,10 @@ export default class CommentIndex extends Component<CommentProps, CommentState> 
         })
     }
     
+    // 'http://localhost:5000/comments/all'
 
     fetchComments = () => {
-        fetch('http://localhost:5000/comments/all', {
+        fetch(`${APIURL}/comments/all`, {
             method: 'GET',
             headers: ({
                 'Content-Type': 'application/json',

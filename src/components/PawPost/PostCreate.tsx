@@ -5,9 +5,10 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import CancelIcon from '@material-ui/icons/Cancel';
+// import CancelIcon from '@material-ui/icons/Cancel';
 import PublishIcon from '@material-ui/icons/Publish';
 import ImagePost from './ImagePost'
+import APIURL from '../../environment'
 
 
 interface PostProps{
@@ -71,9 +72,9 @@ interface PostState {
          handleSubmit = (e: any) => {
           e.preventDefault();
 
-         let serverLink = 'http://localhost:5000'
+        //  let serverLink = 'http://localhost:5000'
         
-         const url = `${serverLink}/pawpost/log`
+        //  const url = `${serverLink}/pawpost/log`
 
             let body = {
              pawpost: {
@@ -90,7 +91,7 @@ interface PostState {
            
          }
 
-         fetch(url, {
+         fetch(`${APIURL}/pawpost/log`, {
            method: 'POST',
            headers: {
              'Content-Type': 'application/json', 
