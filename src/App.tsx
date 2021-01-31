@@ -79,6 +79,11 @@ class App extends React.Component<AppProps, AppState>{
           <UserProfile  updateUser={this.updateUser} />
           <PostIndex updateUser={this.updateUser} sessionToken={this.state.SessionToken} />
         </div>}
+        <br/>
+        <div>
+        <footer> <small>&copy; Copyright 2021, Home Bound Paws</small> </footer>
+        </div>
+        <br/>
       </div>
 
     )

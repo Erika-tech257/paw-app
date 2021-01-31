@@ -1,9 +1,9 @@
 import React from 'react'
-import Grid from '@material-ui/core/Grid';
+// import Grid from '@material-ui/core/Grid';
+import { Grid } from '@material-ui/core';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
 import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
@@ -14,16 +14,21 @@ import CommentHistory from '../Comments/CommentHistory'
 import ImagePost from './ImagePost';
 
 
-
-
-
+declare module "@material-ui/core/styles/createPalette" {
+    interface Palette {
+        neutral: Palette['primary'];
+    }
+    interface PaletteOptions {
+        neutral: PaletteOptions['primary'];
+    }
+}
 
 interface CatalogProps {
     updateUser: (username: string) => void
     fetchHomePosts: any;
     sessionToken: any
     homePosts: Array<object>
-
+   
 }
 
 interface CatalogState {
@@ -32,6 +37,8 @@ interface CatalogState {
     username: string;
 
 }
+
+
 
 // PawPost use card and grid 
 
@@ -48,6 +55,9 @@ class PostCatalog extends React.Component<CatalogProps, CatalogState> {
             open: false,
             username: ""
         }
+
+
+
 
 
     }
@@ -74,58 +84,70 @@ class PostCatalog extends React.Component<CatalogProps, CatalogState> {
                                 this.setState({ postId: Obj.id })
                                 console.log(Obj.id)
                             }}>
-                                <Grid container spacing={2}>
-                                    <Card className='' variant="outlined" color="red">
-                                        <CardContent>
-                                            <Typography className='' color="textSecondary" gutterBottom>
-                                                PawPost {Obj.id}
-                                            </Typography>
 
 
-                                            <Typography variant="body2" component="p">
-                                                {/* <p>Id:{Obj.id}</p> */}
-                                                <p>Title:{Obj.title}</p>
-                                                <p>Animal:{Obj.animal}</p>
-                                                <p>Color:{Obj.color}</p>
-                                                <p>City:{Obj.city}</p>
-                                                <p>State:{Obj.state}</p>
-                                                <p>Description:{Obj.description}</p>
-                                                <p>Date:{Obj.date}</p>
-                                                <p>Time:{Obj.time}</p>
-                                                <p>Username:{Obj.owner}</p>
-                                            </Typography>
-                                            <div>
-                                                <PostItems updateUser={this.props.updateUser} ObjId={Obj.id} fetchHomePosts={this.props.fetchHomePosts} sessionToken={this.props.sessionToken} homePosts={this.props.homePosts} />
-                                            </div>
-                                            <div className="CommentDiv">
-                                                {/* <Button variant="outlined" color="secondary" onClick={this.handleOpen}>
+                                <Card className='' variant="outlined" >
+                                    <CardContent>
+                                        <Typography className='' color="textSecondary" gutterBottom>
+                                            PawPost {Obj.id}
+                                        </Typography>
+
+
+                                        <Typography variant="body2" component="p">
+                                            {/* <p>Id:{Obj.id}</p> */}
+                                            <p>Title:{Obj.title}</p>
+                                            <p>Animal:{Obj.animal}</p>
+                                            <p>Color:{Obj.color}</p>
+                                            <p>City:{Obj.city}</p>
+                                            <p>State:{Obj.state}</p>
+                                            <p>Description:{Obj.description}</p>
+                                            <p>Date:{Obj.date}</p>
+                                            <p>Time:{Obj.time}</p>
+                                            <p>Username:{Obj.owner}</p>
+                                        </Typography>
+
+                                        <div>
+                                            <PostItems updateUser={this.props.updateUser} ObjId={Obj.id} fetchHomePosts={this.props.fetchHomePosts} sessionToken={this.props.sessionToken} homePosts={this.props.homePosts} />
+                                        </div>
+                                        <div className="CommentDiv">
+                                            {/* <Button variant="outlined" color="secondary" onClick={this.handleOpen}>
                                                     Comments
                                                 </Button>
                                              */}
-                                                <Accordion>
-                                                    <AccordionSummary
-                                                        expandIcon={<ExpandMoreIcon />}
-                                                        aria-controls="panel1a-content"
-                                                        id="panel1a-header"
-                                                    >
-                                                        <Typography >Comments</Typography>
-                                                    </AccordionSummary>
-                                                    <AccordionDetails>
-                                                        <Typography >
-                                                            <CommentHistory Obj={Obj} updateUser={this.props.updateUser} />
-                                                        </Typography>
-                                                    </AccordionDetails> 
-                                                </Accordion>
-                                            </div>
+
+                                            <Accordion>
+                                                <AccordionSummary
+                                                    expandIcon={<ExpandMoreIcon />}
+                                                    aria-controls="panel1a-content"
+                                                    id="panel1a-header"
+                                                >
+
+                                                    <Typography >
+                                                        <h4 className="CommentTitle">Comments</h4>
+                                                    </Typography>
+                                                </AccordionSummary>
+
+                                                <AccordionDetails>
+                                                    <Grid container direction="row" justify="center" alignItems="center">
+                                                        <Grid item xs={12} sm={6} md={4}>
+                                                            <Typography >
+                                                                <CommentHistory Obj={Obj} updateUser={this.props.updateUser} />
+                                                            </Typography>
+                                                        </Grid>
+                                                    </Grid>
+                                                </AccordionDetails>
+
+
+                                            </Accordion>
+
+                                        </div>
 
 
 
-                                        </CardContent>
-                                    </Card>
-                                </Grid>
+                                    </CardContent>
+                                </Card>
 
                             </div>
-
 
                         )
                     }

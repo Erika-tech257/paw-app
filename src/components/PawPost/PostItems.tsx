@@ -20,7 +20,7 @@ interface ButtonState {
     open: boolean
 }
 
-// Getting an error becasue id is not defined
+// Delete Post
 
 
 

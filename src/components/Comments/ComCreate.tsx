@@ -3,6 +3,8 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { withStyles, Theme } from '@material-ui/core/styles';
 import { cyan } from '@material-ui/core/colors';
+import CommentEdit from './CommentEdit'
+
 
 
 // ComCreate component located in PostItems
@@ -116,6 +118,7 @@ class ComCreate extends Component<CommentProps, CommentState> {
                         </ColorButton>
 
                     </div>
+                  
                     <br />
 
                 </form>

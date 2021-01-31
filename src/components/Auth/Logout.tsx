@@ -34,13 +34,12 @@ class Logout extends Component<OutProps,OutState> {
 
     render() {
         return (
-            <div className="mainDiv">
+            <div className = "LogoutBtn">
           <Button
           type="submit"
           onClick={this.logout}
           variant="contained"
           color="secondary"
-          className={"{classes.submit}"}
           startIcon={<BackspaceIcon />}
         >
           {this.state.logout}  Logout

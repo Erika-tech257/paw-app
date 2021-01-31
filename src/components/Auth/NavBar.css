@@ -1,7 +1,16 @@
 
-.MainName{
+.Title{
     position: relative;
     top:0px;
-    right:350px;
-    color: #a8d3da		
+    left:30px;
+}
+.logBtn{
+    position: relative;
+    top:6px;
+    left:180px;
+}
+
+/* Changes text color in app bar */
+.MuiToolbar-root{
+    color:white
 }

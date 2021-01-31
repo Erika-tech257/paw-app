@@ -10,9 +10,15 @@
     bottom:40px;
 }
 
-.Comdiv{
+.MuiGrid-container{
     position: relative;
-    height:200px;
-   
+    justify-content: center;
+    flex-direction: row;
+    flex: wrap;
+}
 
+.CommentTitle{
+    position: relative;
+    top:0px;
+    left:195px;
 }

@@ -1,8 +1,10 @@
-import { Component } from 'react'
-
-
-
-
+import React,{ Component } from 'react'
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
 import Logout from './Logout'
 import './NavBar.css'
 
@@ -37,13 +39,21 @@ class Navbar extends Component<NavProps, NavbarComp>{
   render() {
     return (
       <div className="mainNav">
-       
-        <h1 className= "MainName">
-          Home Bound Paws</h1>
-        <nav>
-          <Logout clearToken={this.props.clearToken} />
-
-        </nav>
+         <AppBar position="static">
+        <Toolbar>
+          <IconButton edge="start"  color="inherit" aria-label="menu">
+            <MenuIcon />
+          </IconButton>
+          <Typography className="Title" variant="h5" >
+          Home Bound Paws
+          </Typography>
+         
+        </Toolbar>
+      </AppBar>
+      <div className="logBtn">
+      <Logout clearToken={this.props.clearToken} />
+     </div>
+        
       </div>
     )
   }
