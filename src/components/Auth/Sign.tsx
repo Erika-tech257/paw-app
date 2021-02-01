@@ -12,8 +12,8 @@ import APIURL from '../../environment'
 
 interface AcceptProps {
   updateToken: (token: string) => void;
-  updateUser:(username:string) => void
-  
+  updateUser: (username: string) => void
+
 }
 
 // can also use interface/glossary
@@ -22,20 +22,34 @@ interface SignState {
   password: string;
   username: string;
   login: boolean;
+  emailError: string;
+  passwordError: string;
+  usernameError: string;
 
+}
+const initialState = {
+  email: "",
+  password: "",
+  username: "",
+  login: true,
+  emailError: "",
+  passwordError: "",
+  usernameError: ""
 }
 // Props passes first then State Example (<{}, SignState)
 
 class Sign extends React.Component<AcceptProps, SignState>{
-  constructor(props:AcceptProps) {
+  constructor(props: AcceptProps) {
     super(props)
 
     this.state = {
       email: "",
       password: "",
       username: "",
-      login: true
-
+      login: true,
+      emailError: "",
+      passwordError: "",
+      usernameError: ""
     }
 
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -47,45 +61,65 @@ class Sign extends React.Component<AcceptProps, SignState>{
 
   }
 
-  loginToggle= () => {
+  loginToggle = () => {
     this.setState({ login: !this.state.login })
   }
 
 
-  // updates State
-  // switchNameHandler = () => {
-  //   console.log('Was Clicked');
-  //   this.setState({email: ""})
-  //   this.setState({password: ""})
-  //   this.setState({username: ""})
-  // }
   // Effects are a components 'side effects'.  Effects are actions that occur when there is a state change. 
   // componentDidMount() { **Component mounts when page is loaded, but this app want the fetch to call the api after clicking login or signup button
   //   fetch('http://localhost:5000/user/signup')
   // }
 
   // place api calls on componentDidMount or on an event, event handling logic
-    handleSubmit(e: any) {
+
+  state = initialState
+
+  validate = () => {
+    let emailError = "";
+    let passwordError = "";
+    let usernameError = "";
+
+    if (this.state.password?.length! < 5) {
+      passwordError = 'Password must atleast be 5 characters';
+    }
+
+    if (!this.state.username) {
+      usernameError = "Must provide a Username";
+    }
+
+    if (!this.state.email.includes('@')) {
+      emailError = 'Invalid Email';
+    }
+    if (emailError || usernameError || passwordError) {
+      this.setState({ emailError, usernameError, passwordError });
+      return false;
+    }
+    return true;
+  }
+
+  handleSubmit = (e: any) => {
     e.preventDefault();
+    const isValid = this.validate();
+    if (isValid) {
+      console.log(this.state)
+      this.setState(initialState)
+    }
 
-    
-
-    // Sing up not working 500 error internal server, but login works
-    
     // let serverLink = 'http://localhost:5000'
 
     // const url = `${serverLink}/user/${this.state.login ? 'login': 'signup'}`
-    
-    let reqBody={
-        user:{
-          username: this.state.username, 
-          password: this.state.password, 
-          email: this.state.email
-        }
+
+    let reqBody = {
+      user: {
+        username: this.state.username,
+        password: this.state.password,
+        email: this.state.email
+      }
     }
-    fetch(`${APIURL}/user/${this.state.login? 'login': 'signup'}`, {
+    fetch(`${APIURL}/user/${this.state.login ? 'login' : 'signup'}`, {
       method: 'POST',
-      headers:{
+      headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(reqBody)
@@ -121,6 +155,9 @@ class Sign extends React.Component<AcceptProps, SignState>{
               console.log(this.state.username)
             }}
           />
+          <div style={{ fontSize: 12, color: 'red' }}>
+            {this.state.usernameError}
+          </div>
         </div>
       )
     }
@@ -149,6 +186,10 @@ class Sign extends React.Component<AcceptProps, SignState>{
           }}
           autoFocus
         />
+        <div style={{ fontSize: 12, color: 'red' }}>
+          {this.state.emailError}
+        </div>
+
         <TextField
           variant="outlined"
           margin="normal"
@@ -167,8 +208,11 @@ class Sign extends React.Component<AcceptProps, SignState>{
             console.log(this.state.password)
           }}
         />
+        <div style={{ fontSize: 12, color: 'red' }}>
+          {this.state.passwordError}
+        </div>
         {this.SignupForm()}
-       
+
         <br />
         <FormControlLabel
           control={<Checkbox value="remember" color="primary" />}
@@ -184,7 +228,7 @@ class Sign extends React.Component<AcceptProps, SignState>{
           startIcon={<LockIcon />}
         >
           {this.state.login ? "Sign In" : "Sign Up"}
-          </Button>
+        </Button>
         <Grid container>
           <Grid item xs>
             <Link href="#" variant="body2">
@@ -194,8 +238,8 @@ class Sign extends React.Component<AcceptProps, SignState>{
           <Grid item>
             <Link href="#" variant="body2" onClick=
               {this.loginToggle}>
-              {this.state.login ? "Don't have an account? Sign Up" : "Already have an account? Login"} 
-              
+              {this.state.login ? "Don't have an account? Sign Up" : "Already have an account? Login"}
+
             </Link>
           </Grid>
         </Grid>
