@@ -18,12 +18,12 @@ class ImagePost extends Component<ImgProps, ImgState> {
         super(props)
 
         this.state = {
-            avUrl: "",
+            avUrl: "https://res.cloudinary.com/dc7cdwbh0/image/upload/v1612222371/BallrApp/xsfamylxreyfrijj5kav.jpg" ,
         //    copy secure url image from console goes into avUrl as default image
             
         }
         // uploaded image manually to cloudinary
-        this.setState({ avUrl: ("https://res.cloudinary.com/dc7cdwbh0/image/upload/v1611282353/Home%20Bound%20Paws/puppy-1903313_1280_fkacdx.jpg") })
+        this.setState({ avUrl: ("https://res.cloudinary.com/dc7cdwbh0/image/upload/v1612222371/BallrApp/xsfamylxreyfrijj5kav.jpg") })
     
     }
             handleSubmit = async (e: any) => {
@@ -91,7 +91,7 @@ class ImagePost extends Component<ImgProps, ImgState> {
                     <input id="file-input" type="file" />
                     <button className='loadButton' >Upload!</button>
                 </form>
-                <img src={this.state.avUrl} alt="PetImage" />
+                <img src={this.state.avUrl} alt="PetImage" width = "200" height="200" />
 
             </div>
         )

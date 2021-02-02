@@ -10,6 +10,7 @@ import Divider from '@material-ui/core/Divider';
 interface CommentProps {
     updateUser: (username: string) => void
     Obj: any
+    comments:Array<object>
     // fetchHomePosts: any;
 
 }
@@ -42,17 +43,20 @@ class CommentHistory extends Component<CommentProps, CommentState> {
 
 
     CommentMapper = () => {
-        return this.props.Obj.comments?.map(
+        return this.props.comments?.map(
             (comment: any, index: any) => {
+                console.log(comment)
                 return (
                     <Grid container direction="row" justify="center" alignItems="center">
+                        {this.props.Obj.id === comment.pawpostId?
                         <Grid item xs={12} sm={6} md={4}> 
                            <List>
-                                <p>Username:{this.props.Obj.owner}</p>
+                                <p>Username:{comment.reply.username}</p>
                                 <p>Comment:{comment.description}</p>
                                 <Divider />
                             </List>
                          </Grid>
+                       : null  }
                      </Grid>
 
                 )

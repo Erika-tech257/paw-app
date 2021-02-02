@@ -20,5 +20,9 @@
 .CommentTitle{
     position: relative;
     top:0px;
-    left:195px;
+    left:175px;
+}
+
+.Catalog{
+    color:#5c80cb;
 }

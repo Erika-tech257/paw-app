@@ -7,7 +7,6 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 // import CancelIcon from '@material-ui/icons/Cancel';
 import PublishIcon from '@material-ui/icons/Publish';
-import ImagePost from './ImagePost'
 import APIURL from '../../environment'
 
 
@@ -111,7 +110,6 @@ interface PostState {
          
             <div>
                 <Card className={'mainCard'}>
-      <ImagePost sessionToken={this.props.sessionToken} />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
             Create PawPost

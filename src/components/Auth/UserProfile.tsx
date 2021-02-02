@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-
+import './UserProfile.css'
 
 interface ProfileProps {
     updateUser: (username: string) => void

@@ -136,7 +136,8 @@ class Sign extends React.Component<AcceptProps, SignState>{
       return null
     } else {
       return (
-        <div>
+        
+        <div >
           <TextField
             variant="outlined"
             margin="normal"
@@ -159,6 +160,7 @@ class Sign extends React.Component<AcceptProps, SignState>{
             {this.state.usernameError}
           </div>
         </div>
+        
       )
     }
   }
@@ -170,6 +172,7 @@ class Sign extends React.Component<AcceptProps, SignState>{
         <h1>Home Bound Paws</h1>
         <TextField
           variant="outlined"
+          
           margin="normal"
           required
           fullWidth

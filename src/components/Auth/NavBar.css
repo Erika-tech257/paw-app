@@ -2,7 +2,7 @@
 .Title{
     position: relative;
     top:0px;
-    left:30px;
+    left:570px;
 }
 .logBtn{
     position: relative;
@@ -11,6 +11,6 @@
 }
 
 /* Changes text color in app bar */
-.MuiToolbar-root{
+.MuiAppBar-colorPrimary{
     color:white
 }

@@ -1,7 +1,9 @@
 import React from 'react'
 // import Grid from '@material-ui/core/Grid';
 import { Grid } from '@material-ui/core';
+import Box from '@material-ui/core/Box';
 import Card from '@material-ui/core/Card';
+import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import Accordion from '@material-ui/core/Accordion';
@@ -12,6 +14,8 @@ import PostItems from './PostItems'
 import './PostCatalog.css'
 import CommentHistory from '../Comments/CommentHistory'
 import ImagePost from './ImagePost';
+
+
 
 
 declare module "@material-ui/core/styles/createPalette" {
@@ -28,7 +32,8 @@ interface CatalogProps {
     fetchHomePosts: any;
     sessionToken: any
     homePosts: Array<object>
-   
+    comments: Array<object>
+
 }
 
 interface CatalogState {
@@ -59,7 +64,6 @@ class PostCatalog extends React.Component<CatalogProps, CatalogState> {
 
 
 
-
     }
 
     handleOpen = () => {
@@ -73,7 +77,7 @@ class PostCatalog extends React.Component<CatalogProps, CatalogState> {
 
         return (
             <div>
-                <h2 className="Catalog">PawPost History</h2>
+                <h2 className="Catalog">PawPosts</h2>
                 {
                     this.props.homePosts?.map((Obj: any, index: any) => {
                         console.log(Obj)
@@ -87,10 +91,14 @@ class PostCatalog extends React.Component<CatalogProps, CatalogState> {
 
 
                                 <Card className='' variant="outlined" >
+
                                     <CardContent>
                                         <Typography className='' color="textSecondary" gutterBottom>
                                             PawPost {Obj.id}
                                         </Typography>
+
+
+                                        <ImagePost sessionToken={this.props.sessionToken} />
 
 
                                         <Typography variant="body2" component="p">
@@ -103,7 +111,7 @@ class PostCatalog extends React.Component<CatalogProps, CatalogState> {
                                             <p>Description:{Obj.description}</p>
                                             <p>Date:{Obj.date}</p>
                                             <p>Time:{Obj.time}</p>
-                                            <p>Username:{Obj.owner}</p>
+                                            <p>Username:{Obj.newPost.username}</p>
                                         </Typography>
 
                                         <div>
@@ -131,29 +139,21 @@ class PostCatalog extends React.Component<CatalogProps, CatalogState> {
                                                     <Grid container direction="row" justify="center" alignItems="center">
                                                         <Grid item xs={12} sm={6} md={4}>
                                                             <Typography >
-                                                                <CommentHistory Obj={Obj} updateUser={this.props.updateUser} />
+                                                                <CommentHistory Obj={Obj} comments={this.props.comments} updateUser={this.props.updateUser} />
                                                             </Typography>
                                                         </Grid>
                                                     </Grid>
                                                 </AccordionDetails>
-
-
                                             </Accordion>
-
                                         </div>
-
-
-
-                                    </CardContent>
+                               </CardContent>
                                 </Card>
-
                             </div>
 
                         )
                     }
                     )
                 }
-
 
             </div >
         )
