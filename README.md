@@ -1,10 +1,10 @@
-# Getting Started with Create React App
+# Home Bound Paws
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Home Bound Paws is an application that allows users to create posts for missing or stray animals.
 
 ## Available Scripts
 
-In the project directory, you can run:
+In the project directory, you can run: 
 
 ### `npm start`
 
