@@ -1,9 +1,11 @@
 img{
     position: relative;
+    justify-content: center;
     top: 10px;
+    left:-120px;
     bottom: 0px;
-    width:5px;
-    height: 5px;
+    width: 150px;
+    height: 150px;
 }
 
 .loadButton{
@@ -16,3 +18,8 @@ img{
     bottom:10px;
 }
 
+/* .file-input{
+    position: relative;
+    top:-145px;
+    left:45px;
+} */
