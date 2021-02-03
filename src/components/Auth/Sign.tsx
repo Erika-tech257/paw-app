@@ -109,7 +109,7 @@ class Sign extends React.Component<AcceptProps, SignState>{
     // let serverLink = 'http://localhost:5000'
 
     // const url = `${serverLink}/user/${this.state.login ? 'login': 'signup'}`
-    const url = `${APIURL}user/${this.state.login ? 'login' : 'signup'}`
+    const url = `${APIURL}/user/${this.state.login ? 'login' : 'signup'}`
 
     let reqBody = {
       user: {

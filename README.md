@@ -1,6 +1,18 @@
+# Project status
+
+This application is still in progress 
+
 # Home Bound Paws
 
 Home Bound Paws is an application that allows users to create posts for missing or stray animals.
+
+## Description
+
+Home Bound Paws is an application that allows users to post an image and description of a missing or homeless pet. Users are also encouraged to leave a comment under a post, in hopes of saving a pet. Ultimately our goal is to reunite owners with their pets and help homeless animals find their furever home. 
+
+## Contributing
+
+Not open to contributions right now.
 
 ## Available Scripts
 
