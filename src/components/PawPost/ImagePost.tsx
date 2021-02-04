@@ -4,6 +4,7 @@ import './ImagePost.css'
 
 interface ImgProps {
     sessionToken: any
+    
 }
 
 type ImgState = {
