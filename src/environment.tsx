@@ -5,7 +5,7 @@ switch (window.location.hostname) {
     case '127.0.0.1':
         APIURL='http://localhost:5000'
         break
-        case 'ej-pawapp.herokuapp.com':
+        case 'ej-pawappclient.herokuapp.com':
             APIURL='https://ej-pawapp.herokuapp.com'
 }
 
