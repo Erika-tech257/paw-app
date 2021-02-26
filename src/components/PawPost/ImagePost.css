@@ -10,6 +10,9 @@ img{
 
 .loadButton{
     margin: .5em auto;
+    position: relative;
+    top:0px;
+    left:120px;
 }
 
 .form{
