@@ -124,7 +124,7 @@ class PostEdit extends Component<PostEditProps, PostEditState> {
         <Card className={''}>
 
           <CardActionArea>
-            <ImagePost sessionToken />
+            <ImagePost sessionToken={this.props.sessionToken} id={this.props.ObjId} />
             <CardContent>
               <Typography gutterBottom variant="h5" component="h2">
                 Edit PawPost

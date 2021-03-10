@@ -128,7 +128,7 @@ class Sign extends React.Component<AcceptProps, SignState>{
       .then(r => r.json())
       .then(rObj => {
         this.props.updateToken(rObj.sessiontoken)
-        // this.props.updateUser(rObj.user.username)
+        this.props.updateUser(rObj.user.username)
         console.log(rObj.user.username)
       });
   }

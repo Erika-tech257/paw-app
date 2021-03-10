@@ -98,8 +98,8 @@ class PostCatalog extends React.Component<CatalogProps, CatalogState> {
                                         </Typography>
 
 
-                                        <ImagePost sessionToken={this.props.sessionToken} />
-
+                                        <ImagePost sessionToken={this.props.sessionToken} id={Obj.id} />
+                                        
 
                                         <Typography variant="body2" component="p">
                                             {/* <p>Id:{Obj.id}</p> */}
