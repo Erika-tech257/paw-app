@@ -3,8 +3,8 @@ import React, { Component } from 'react'
 import APIURL from '../../environment'
 import './ImagePost.css'
 
-/* Go into the endpoint and add a user params similar to postcontroller so image is attached to each user. create an img tag or p tag(<p>{Obj.img}</p>) to help display image maybe with postcatalog or similar to commenthistory component. within the put/update fetch pass Obj and dig into the array and grab the secure url of the image(would be in the console).Also use .map(map method to map over images attached to users) & use a ternary in the return to display what the user has uploaded or default image will display. May try to use onChange for update.
-
+/* Go into the endpoint and add a user params similar to postcontroller so image is attached to each user. create an img tag or p tag(<p>{Obj.id}</p>) to help display image maybe with postcatalog or similar to commenthistory component. within the put/update fetch pass Obj and dig into the array and grab the secure url of the image(would be in the console).Also use .map(map method to map over images attached to users) & use a ternary in the return to display what the user has uploaded or default image will display. May try to use onChange for update.
+ImagePost added to Post Catalog JSX
 */
 
 

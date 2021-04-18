@@ -53,16 +53,11 @@ class PostCatalog extends React.Component<CatalogProps, CatalogState> {
     constructor(props: CatalogProps) {
         super(props)
 
-
-
         this.state = {
             postId: "",
             open: false,
             username: ""
         }
-
-
-
 
     }
 
@@ -89,7 +84,6 @@ class PostCatalog extends React.Component<CatalogProps, CatalogState> {
                                 console.log(Obj.id)
                             }}>
 
-
                                 <Card className='' variant="outlined" >
 
                                     <CardContent>
@@ -97,10 +91,10 @@ class PostCatalog extends React.Component<CatalogProps, CatalogState> {
                                             PawPost {Obj.id}
                                         </Typography>
 
-
-                                        <ImagePost sessionToken={this.props.sessionToken} id={Obj.id} />
-                                        
-
+                                        {/* Added obj.id to imagepost so each image is specific to each post = post id */}
+                                       
+                                        <ImagePost sessionToken={this.props.sessionToken} id={Obj.id} /> 
+                                       
                                         <Typography variant="body2" component="p">
                                             {/* <p>Id:{Obj.id}</p> */}
                                             <p>Title:{Obj.title}</p>
@@ -112,7 +106,8 @@ class PostCatalog extends React.Component<CatalogProps, CatalogState> {
                                             <p>Date:{Obj.date}</p>
                                             <p>Time:{Obj.time}</p>
                                             <p>Username:{Obj.newPost.username}</p>
-                                        </Typography>
+                                        </Typography>  
+                                        
 
                                         <div>
                                             <PostItems updateUser={this.props.updateUser} ObjId={Obj.id} fetchHomePosts={this.props.fetchHomePosts} sessionToken={this.props.sessionToken} homePosts={this.props.homePosts} />
