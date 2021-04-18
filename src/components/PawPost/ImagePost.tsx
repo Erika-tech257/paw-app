@@ -1,4 +1,4 @@
-import { timeStamp } from 'console'
+// import { timeStamp } from 'console'
 import React, { Component } from 'react'
 import APIURL from '../../environment'
 import './ImagePost.css'

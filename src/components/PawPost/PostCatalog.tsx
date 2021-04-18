@@ -1,9 +1,9 @@
 import React from 'react'
 // import Grid from '@material-ui/core/Grid';
 import { Grid } from '@material-ui/core';
-import Box from '@material-ui/core/Box';
+// import Box from '@material-ui/core/Box';
 import Card from '@material-ui/core/Card';
-import CardMedia from '@material-ui/core/CardMedia';
+// import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import Accordion from '@material-ui/core/Accordion';
