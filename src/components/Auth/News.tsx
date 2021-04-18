@@ -18,7 +18,8 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
-import PuppyBed from './Assets/PuppyBed.jpg'
+import PuppyBed from './Assets/PuppyBed.jpg';
+import './News.css';
 
 
 const useStyles = makeStyles((theme: Theme) =>
