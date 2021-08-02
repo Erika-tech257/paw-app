@@ -9,15 +9,11 @@ import Button from '@material-ui/core/Button';
 import PublishIcon from '@material-ui/icons/Publish';
 import APIURL from '../../environment'
 
-
 interface PostProps{
 updateUser: (username: string) => void
 fetchHomePosts : any
 sessionToken: any
-
-
 }
-
 
 // use sessiontoken to access local storage
 
@@ -31,13 +27,7 @@ interface PostState {
     date: string;
     time: string;
     owner: string;
-    
-   
-    
-    
 }
-
-
  class PostCreate extends React.Component<PostProps, PostState> {
      constructor(props:PostProps){
          super(props)
@@ -52,8 +42,7 @@ interface PostState {
              date: "",
              time: "",
              owner: "" 
-
-         }
+            }
 
          this.handleSubmit = this.handleSubmit.bind(this)
          console.log("User info inputed");
@@ -107,7 +96,6 @@ interface PostState {
      
     render() {
         return (
-         
             <div>
                 <Card className={'mainCard'}>
         <CardContent>

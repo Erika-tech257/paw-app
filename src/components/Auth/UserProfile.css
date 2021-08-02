@@ -1,8 +1,8 @@
 .UserProfile{
     position: relative;
-    top:-140px;
-    left:-500px;
-    right:200px;
-    color:#ffffff;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
     font-size: 18px;
+    font-weight: bold;
 }

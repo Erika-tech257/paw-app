@@ -4,8 +4,7 @@ import Navbar from './components/Auth/Navbar';
 import Sign from './components/Auth/Sign'
 import PostIndex from './components/PawPost/PostIndex'
 import UserProfile from './components/Auth/UserProfile'
-import { Container } from '@material-ui/core';
-import Typography from '@material-ui/core/Typography';
+
 
 
 // App is top level component
@@ -76,7 +75,7 @@ class App extends React.Component<AppProps, AppState>{
     return (
       <div className="App" >
         {!this.state.SessionToken ? <Sign updateToken={this.updateToken} updateUser={this.updateUser} /> : <div>
-          <Navbar clearToken={this.clearToken} />
+          <Navbar clearToken={this.clearToken}/>
           <UserProfile updateUser={this.updateUser} />
           <PostIndex updateUser={this.updateUser} sessionToken={this.state.SessionToken} />
         </div>}

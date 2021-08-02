@@ -1,16 +1,25 @@
-
-.Title{
+@media only screen and (min-width: 601px) {
+  div.LogoutBtn {
     position: relative;
-    top:0px;
-    left:570px;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    top: 60px;
+    left: 800px;
+  }
 }
-.logBtn{
+
+@media only screen and (max-width: 600px) {
+  div.LogoutBtn {
     position: relative;
-    top:6px;
-    left:180px;
+    display: flex;
+    flex-wrap: nowrap;
+    top: 55px;
+    left: -320px;
+  }
 }
 
 /* Changes text color in app bar */
-.MuiAppBar-colorPrimary{
-    color:white
+.MuiAppBar-colorPrimary {
+  color: white;
 }

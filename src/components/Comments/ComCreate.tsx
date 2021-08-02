@@ -23,6 +23,7 @@ interface CommentProps {
 interface CommentState {
     description: string;
     owner: string;
+    open: boolean;
 
 
 }
@@ -42,19 +43,19 @@ class ComCreate extends Component<CommentProps, CommentState> {
     constructor(props: CommentProps) {
         super(props)
 
-
-
-
         this.state = {
             description: "",
-            owner: ""
-
+            owner: "", 
+            open: false
         }
 
+        this.setState({ open: false })
 
         this.handleSubmit = this.handleSubmit.bind(this)
         console.log('comment posted')
         this.setState({ description: "" })
+
+        
 
     }
 
@@ -83,10 +84,15 @@ class ComCreate extends Component<CommentProps, CommentState> {
                 console.log(rObj);
                 this.props.fetchHomePosts();
             })
-
+          
     }
-    render() {
+    handleClose = () => {
+        this.setState({ open: false });
+    }
+   
 
+    render() {
+     
         return (
 
             <div>
@@ -119,14 +125,9 @@ class ComCreate extends Component<CommentProps, CommentState> {
                             className="{classes.margin}">
                             Reply
                         </ColorButton>
-
-                    </div>
-                  
+                    </div>          
                     <br />
-
                 </form>
-                
-
             </div>
         )
     }

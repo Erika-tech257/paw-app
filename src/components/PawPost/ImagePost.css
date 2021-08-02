@@ -1,28 +1,41 @@
-img{
+@media only screen and (min-width: 600px) {
+  img {
     position: relative;
+    display: flex;
+    flex-wrap: nowrap;
     justify-content: center;
-    top: 10px;
-    left:-120px;
-    bottom: 0px;
+    left: 160px;
     width: 150px;
     height: 150px;
+  }
 }
 
-.loadButton{
-    margin: .5em auto;
+@media only screen and (max-width: 601px) {
+   img {
     position: relative;
-    top:0px;
-    left:120px;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    left: 110px;
+    width: 150px;
+    height: 150px;
+   }
 }
 
-.form{
-    position: relative;
-    top: 20px;
-    bottom:10px;
+.loadButton {
+  position: relative;
+  top: 0px;
+  left: 0px;
 }
 
-/* .file-input{
+input{
     position: relative;
-    top:-145px;
-    left:45px;
-} */
+    left: -10px;
+}
+
+.form {
+  position: relative;
+  top: 20px;
+  bottom: 10px;
+}
+

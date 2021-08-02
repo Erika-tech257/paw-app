@@ -3,16 +3,11 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
-import Box from '@material-ui/core/Box';
 import MenuIcon from '@material-ui/icons/Menu';
 import Logout from './Logout'
 import './NavBar.css'
-import News from '../Auth/News'
-import { Container } from '@material-ui/core';
-
-
-
-
+// import News from '../Auth/News'
+// import Box from '@material-ui/core/Box';
 
 interface NavProps {
   clearToken: () => void
@@ -35,21 +30,14 @@ class Navbar extends Component<NavProps, NavbarComp>{
       About: "",
       Posts: "",
       Contact: ""
-
     }
-
   }
-
-
 
   render() {
     return (
       <div className="mainNav">
-        <AppBar position="static" color="primary">
+        {/* <AppBar position = "static"  color="primary">
           <Toolbar>
-            <IconButton edge="start" color="inherit" aria-label="menu">
-              <MenuIcon />
-            </IconButton>
             <Typography className="Title" variant="h5" >
               Home Bound Paws
           </Typography>
@@ -61,11 +49,26 @@ class Navbar extends Component<NavProps, NavbarComp>{
         </div>
         <Box
           position="relative"
+          display = "block"
           top="20px"
-          width="500px"
-          left="100px">
+          width="300px"
+          left="10px">
           <News />
-        </Box>
+        </Box> */}
+
+<div className="mainDiv">
+      <AppBar position="static">
+        <Toolbar>
+          <IconButton edge="start" className={""} color="inherit" aria-label="menu">
+            <MenuIcon />
+          </IconButton>
+          <Typography variant="h6" className={""}>
+            Home Bound Paws
+          </Typography>
+          <Logout clearToken={this.props.clearToken} />
+        </Toolbar>
+      </AppBar>
+    </div>
       </div>
     )
   }

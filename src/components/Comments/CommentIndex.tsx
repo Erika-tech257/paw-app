@@ -19,7 +19,7 @@ interface CommentProps {
 
 interface CommentState {
     open: boolean
-    homePosts: ([]),
+    homePosts: Array<object>,
     setHomePosts:(e:any)=> void
 }
 
@@ -31,7 +31,7 @@ export default class CommentIndex extends Component<CommentProps, CommentState> 
         this.state = {
             homePosts: ([]),
             open: false,
-            setHomePosts:(e)=>
+            setHomePosts:(e:any)=>
             this.setState({
                 homePosts:e
             })
@@ -56,16 +56,13 @@ export default class CommentIndex extends Component<CommentProps, CommentState> 
             })
         }).then((res) => res.json())
             .then((allData) => {
-           
             this.state.setHomePosts(allData)
             console.log(allData)
             }).catch(err => console.log(err))
-     
-
     }
 
     componentDidMount = () => {
-        
+
     }
 
     handleOpen = () => {

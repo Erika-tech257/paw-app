@@ -11,14 +11,11 @@ ImagePost added to Post Catalog JSX
 interface ImgProps {
     sessionToken: any
     id:string
-
 }
 
 type ImgState = {
     avUrl: string;
   
-
-
 }
 
 const CLOUD_URL = "https://api.cloudinary.com/v1_1/dc7cdwbh0/image/upload"
@@ -96,15 +93,12 @@ class ImagePost extends Component<ImgProps, ImgState> {
             <div>
                 <form encType="multipart/form-data" onSubmit={this.handleSubmit}>
 
-                    <input id={`file-input-${this.props.id}`} type="file"
+                    <input id={`file-input-${this.props.id}`} type="file" 
                         placeholder="Upload an image"
                     />
                     <button className='loadButton' >Upload!
                     </button>
                     <img src = {this.state.avUrl ? this.state.avUrl : ""} alt = "pet img" />
-
-              
-
                 </form>
 
 
