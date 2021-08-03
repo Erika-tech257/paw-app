@@ -75,7 +75,7 @@ class PostCatalog extends React.Component<CatalogProps, CatalogState> {
                 console.log(Obj.id);
               }}
             >
-              <Card className="" variant="outlined">
+              <Card className="mainCard" variant="outlined">
                 <CardContent>
                   <Typography className="" color="textSecondary" gutterBottom>
                     PawPost {Obj.id}
@@ -111,19 +111,14 @@ class PostCatalog extends React.Component<CatalogProps, CatalogState> {
                     />
                   </div>
                   <div className="CommentDiv">
-                    {/* <Button variant="outlined" color="secondary" onClick={this.handleOpen}>
-                                                    Comments
-                                                </Button>
-                                             */}
-
                     <Accordion>
                       <AccordionSummary
                         expandIcon={<ExpandMoreIcon />}
                         aria-controls="panel1a-content"
                         id="panel1a-header"
                       >
-                        <Typography>
-                          <h4 className="CommentTitle">Comments</h4>
+                        <Typography className="CommentTitle">
+                          Comments
                         </Typography>
                       </AccordionSummary>
 
@@ -134,15 +129,13 @@ class PostCatalog extends React.Component<CatalogProps, CatalogState> {
                           justify="center"
                           alignItems="center"
                         >
-                          <Grid item xs={12} sm={6} md={4}>
-                            <Typography>
-                              <CommentHistory
-                                Obj={Obj}
-                                comments={this.props.comments}
-                                updateUser={this.props.updateUser}
-                              />
-                            </Typography>
-                          </Grid>
+                          <Typography>
+                            <CommentHistory
+                              Obj={Obj}
+                              comments={this.props.comments}
+                              updateUser={this.props.updateUser}
+                            />
+                          </Typography>
                         </Grid>
                       </AccordionDetails>
                     </Accordion>

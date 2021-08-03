@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Grid from '@material-ui/core/Grid';
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
-
+import './CommentHistory.css';
 
 // Located in PostCatalog
 
@@ -36,10 +36,10 @@ class CommentHistory extends Component<CommentProps, CommentState> {
             (comment: any, index: any) => {
                 console.log(comment)
                 return (
-                    <Grid container direction="column" alignContent="center" alignItems="center">
+                    <Grid container direction="column" alignContent="center">
                         {this.props.Obj.id === comment.pawpostId?
                         <Grid item xs={12} sm={6} md={4}> 
-                           <List>
+                           <List className ="commentList">
                                 <p>Username:{comment.reply.username}</p>
                                 <p>Comment:{comment.description}</p>
                                 <Divider />

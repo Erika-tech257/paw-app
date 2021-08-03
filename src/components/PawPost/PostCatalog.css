@@ -1,7 +1,10 @@
+.mainCard{
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
 .MuiGrid-root{
     justify-content:center;
-    flex-wrap: wrap;
-    
+    flex-wrap: wrap;   
 }
 
 .deleteBTn{
@@ -17,10 +20,18 @@
     flex: wrap;
 }
 
+@media only screen and (min-width: 601px) {
+   .CommentTitle {
+    position: relative;
+    left: 180px;
+   }
+}
+
+@media only screen and (max-width: 600px) {
 .CommentTitle{
     position: relative;
-    top:0px;
-    left:175px;
+    left: 130px;
+    }
 }
 
 .Catalog{

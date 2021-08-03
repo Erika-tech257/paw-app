@@ -96,7 +96,7 @@ class ImagePost extends Component<ImgProps, ImgState> {
                     <input id={`file-input-${this.props.id}`} type="file" 
                         placeholder="Upload an image"
                     />
-                    <button className='loadButton' >Upload!
+                    <button className='loadButton' >Upload
                     </button>
                     <img src = {this.state.avUrl ? this.state.avUrl : ""} alt = "pet img" />
                 </form>
